@@ -30,7 +30,12 @@ class Signin extends Component {
       return false
     }
 
-    axios.post('/login',this.state)
+    axios.post('/signin',this.state)
+      .then( ret=> {
+        if(ret.data.success) {
+          console.log('login success')
+        }
+      })
       .catch(error => console.log(error))
   }
 
