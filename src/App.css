@@ -1,80 +1,307 @@
-html, body, div, input, a, textarea {
+html, body, section, div, input, a, textarea {
   margin: 0;
   padding: 0;
-  font-family: Open Sans,Helvetica Neue,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei;
+  font-family:sans-serif, Open Sans,Helvetica Neue,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei;
 } 
 
+a {
+  color: #262930;
+  text-decoration: none;
+  cursor: pointer;  
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 html {
-  background: #f3f5f6;
+  background: #f9f9f9;
+}
+
+.body {
+  overflow-x: hidden;
 }
 
 .App {
   text-align: center;
 }
 
-.signin-block {
-  position: relative;
-  top: 100px;
-  width: 320px;
+.home {
+  background: #fff;
+  height: 100%;
+  color: #33333d;
+}
+
+.home-heading {
+  position: absolute;
+  top: 50%;
+  margin-top: -150px;
+  width: 100%;
+  text-align: center;
+}
+
+.home-logo {
+  font: 150px 'Italiana', sans-serif;
+  padding: 0 20px;
+}
+
+.home-tag {
+  font-size: 16px;
+}
+
+.signin-wrap, .signup-wrapper {
+  max-width: 340px;
   margin: 0 auto;
+  padding-top: 30px;
+}
+
+.signin-logo {
+  width: 100%;
+  text-align: center;
+  font-size: 100px;
+  margin-bottom: 30px;
+}
+
+.signin-block, .signup-block {
+  width: 100%;
   background: #fff;
   padding: 20px;
   border-radius: 5px;
-  border-top: 5px solid #f05b48;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
 }
 
 .signin-block h1 , .signup-block h1 {
   text-align: center;
   color: #262930;
   font-size: 24px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.signin-block label, .signup-block label {
+  font-size: 16px;
+  margin-bottom: 7px;
 }
 
 .signin-block input, .signup-block input {
   width: 100%;
-  height: 42px;
-  line-height: 28px;
-  font-size: 20px;
   box-sizing: border-box;
   border: 1px solid #ccc;
+  min-height: 34px;
+  line-height: 20px;
+  font-size: 14px;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
   padding: 0 10px;
   background: #fff;
 }
 
 .signin-block input:active, .signin-block input:focus,.signup-block input:focus {
-  border: 1px solid #f05b48;
+  border: 1px solid #269f42;
+  border-radius: 5px;
 }
 
 .signin-block button, .signup-block button {
   width: 100%;
-  height: 40px;
-  background: #f05b48;
+  min-height: 34px;
+  background: #269f42;
+  background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+  background-image: -webkit-linear-gradient(-180deg, #34d058 0%, #28a745 90%);
   color: #fff;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 14px;
   text-align: center;
   cursor: pointer;
+  margin-top: 10px;
   border-radius: 5px;
-  opacity: 1;
   border: none;
 }
 
 .signin-block button:hover, .signup-block button:hover {
-  opacity: 0.8;
+  background-image: linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
+  background-image: -webkit-linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
 }
 
+.create-account, .had-account {
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px 0;
+}
 
-.signup-block {
-  position: relative;
-  top: 100px;
-  margin: 0 auto;
-  max-width: 400px;
-  padding: 20px 10px 10px;
-  background: #fff;
+.create-account a, .had-account a {
+  color: #0366d6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Header  common component*/
+.header-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 100%;
+  padding: 12px 0;
   color: #262930;
 }
+
+.header-fixed .header-wrapper {
+  position: fixed;
+  background-color: #24292e;
+  animation-name: FadeInDown;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  -webkit-animation-name: FadeInDown;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.header-content {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  font-size: 28px;
+  line-height: 30px;
+  float: left;
+  cursor: pointer;
+}
+
+.header-fixed .header-logo a {
+  color: #fff;
+}
+
+.header-logo a:hover {
+  text-decoration: none;
+}
+
+.header-nav {
+  float: right;
+  display: flex;
+}
+
+.header-fixed .nav-write {
+  color: #fff;
+}
+
+.nav-write {
+  color: #02b875;
+  margin-right: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: 2px;
+  margin-top: 5px;
+}
+
+.nav-search {
+  min-height: 30px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.header-fixed .nav-search input {
+  color: #fff;
+  background-color: rgba(255,255,255,0.125); 
+}
+
+.nav-search input {
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  padding: 3px 10px;
+  background: none;
+}
+
+.nav-search input:focus {
+  outline: none;
+}
+
+.nav-user {
+  max-height: 40px;
+  display: block;
+  padding: 8px;
+}
+
+.nav-user img {
+  display: inline-block;
+  border-radius: 3px;
+  max-width: 35px;
+  margin-top: -5px;
+}
+
+/* postList common component */
+.posts-body {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.postList {
+  width: 66.666667%;
+  float: left;
+  padding: 0 10px;
+  list-style: none;
+}
+
+.postItem {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eff3f6;
+}
+
+.postItem-title {
+  color: #262930;
+  font-weight: 300;
+}
+
+.postItem-info {
+  color: #666;
+  font-size: 13px;
+  margin: 5px 0 10px;
+}
+
+.postItem-footer {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.postItem-footer-right {
+  float: right;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.postItem-agree, .postItem-comments {
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
 

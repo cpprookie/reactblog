@@ -51,15 +51,22 @@ class Signup extends Component {
 
   render () {
     return (
-      <div className="signup-block">
-        <h1>Sign Up</h1>
-        <input name="username" type="text" placeholder="username"
-           onChange={this.handleUsername.bind(this)}/>
-        <input name="password" type="password" placeholder="password"
-           onChange={this.handlePassword.bind(this)} />
-        <input name="repeat" type="password" placeholder="repeat password" 
-           onChange={this.handleRepeat.bind(this)}/>
-        <button onClick={this.handleSubmit.bind(this)}>SUBMIT</button>
+      <div className="signup-wrapper">
+        <div className="signin-logo">R&B</div>
+        <div className="signup-block">
+          <h1>Sign Up</h1>
+          <label htmlFor="username">Username</label>
+          <input name="username" type="text" id="username"
+            onChange={this.handleUsername.bind(this)}/>
+          <label htmlFor="password">Password</label>
+          <input name="password" type="password" id="password"
+            onChange={this.handlePassword.bind(this)} />
+          <label htmlFor="repeat">Repeat password</label>
+          <input name="repeat" type="password" id="repeat"
+            onChange={this.handleRepeat.bind(this)}/>
+          <button onClick={this.handleSubmit.bind(this)}>sign up</button>
+        </div>
+        <p className="had-account">Already have an account?<a href="/signin"> I will sign in</a></p>
       </div>
     )
   }

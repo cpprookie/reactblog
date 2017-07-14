@@ -41,11 +41,17 @@ class Signin extends Component {
 
   render () {
     return (
-      <div className="signin-block">
-        <h1>Sign In</h1>
-        <input type="text" placeholder="username" onChange={this.handleUsername.bind(this)} autoFocus/>
-        <input type="password" placeholder="password" onChange={this.handlePassword.bind(this)} />
-        <button onClick={this.handleClick.bind(this)}>submit</button>
+      <div className="signin-wrap">
+        <div className="signin-logo">R&B</div>
+        <div className="signin-block">
+          <h1>sign in </h1>
+          <label htmlFor="username">Username</label>
+          <input id="username" type="text" onChange={this.handleUsername.bind(this)} autoFocus/>
+          <label htmlFor="password">Password</label>
+          <input id="password" type="password" onChange={this.handlePassword.bind(this)} />
+          <button onClick={this.handleClick.bind(this)}>submit</button>
+        </div>
+        <p className="create-account">New to R&B?<a href="/signup">Create an account.</a></p>
       </div>
     )
   }
