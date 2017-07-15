@@ -1,6 +1,7 @@
 import React ,{Component} from 'react'
 import Header from './common/Header'
 import PostList from './common/PostList'
+import History from './common/History'
 
 const testData = [
   {"id":0,"title":"Manchester Welcomes Mobike","author":"Author: Mobike UK","date":"Date: 29th June","agree": 0, "comments": 1},
@@ -13,6 +14,10 @@ const testData = [
   {"id":7,"title":"The Mobike White Paper: Bike-Share in the City","link":"https://mobike.com/global/blog/post/mobike-white-paper","author":"Author: Mobike Global","date":"Date: 19th May 2017", "agree": 0, "comments": 1}
 ]
 
+const historyData = [
+  {"id":0,"title":"Manchester Welcomes Mobike", agree: 2},
+  {"id":1,"title":"Mobike Japan in Fukuoka", agree: 3}
+]
 
 class Posts extends  Component {
   constructor (props) {
@@ -24,6 +29,7 @@ class Posts extends  Component {
         <Header isFixed={this.props.headerFix} user={{avatar: 'https://avatars4.githubusercontent.com/u/18083815?v=4&s=40'}} />
         <section className="posts-body">
           <PostList shortPosts={testData} />
+          <History history={historyData} />
         </section>
       </div>
     )

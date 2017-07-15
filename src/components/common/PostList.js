@@ -9,8 +9,8 @@ const PostItem = props => (
     </div>
     <div className="postItem-footer">
       <div className="postItem-footer-right">
-        <span className="postItem-agree">{props.shortPost.agree}</span>
-        <span className="postItem-comments">{props.shortPost.comments}</span>
+        <span className="postItem-agree">agree({props.shortPost.agree})</span>
+        <span className="postItem-comments">comments({props.shortPost.comments})</span>
       </div>
     </div>
   </li>

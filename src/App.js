@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Signin from './components/Signin'
 import Signup from './components/Signup'
 import Posts from './components/Posts'
+import Post from './components/Post'
 import Mock from  'mockjs'
 
 // import axios from 'axios'
@@ -37,12 +38,13 @@ class App extends Component {
 
   render() {
     return (
-     <div className="blog">
+    <div className="blog">
       <Route exact path="/" component={Home} />
       <Route path="/signin" component={Signin} />
       <Route path='/signup' component={Signup} />
       <Route path='/posts' render= {()=> <Posts headerFix={this.state.headerFix} />} />
-     </div> 
+      <Route path='/post/:postID' render= {()=> <Posts headerFix={this.state.headerFix} />} />
+    </div> 
     )
   }
 }
