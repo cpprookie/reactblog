@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Header from './common/Header'
+import Comment from './common/Comment'
 
 class Post extends Component {
   constructor (props) {
@@ -15,6 +16,9 @@ class Post extends Component {
       }
     }
   }
+  componentWillMount () {
+    console.log(JSON.stringify(this.props))
+  } 
   render () {
     return (
       <div className="post">
@@ -32,7 +36,7 @@ class Post extends Component {
               <div className="post-comment">{this.state.post.comment}</div>
             </div>
           </section>
-          <section className="comments-content"></section>
+          <Comment />
         </div>
       </div>
     )

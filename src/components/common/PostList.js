@@ -18,7 +18,7 @@ const PostItem = props => (
 
 
 const PostList = props => (
-  <ul className="postList">
+  <ul className={props.containerClass}>
     {props.shortPosts.map(item =>(
       <PostItem key={item.id} shortPost={item} />
     ))}

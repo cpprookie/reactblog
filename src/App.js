@@ -6,6 +6,7 @@ import Signin from './components/Signin'
 import Signup from './components/Signup'
 import Posts from './components/Posts'
 import Post from './components/Post'
+import User from './components/User'
 import Mock from  'mockjs'
 
 // import axios from 'axios'
@@ -42,8 +43,9 @@ class App extends Component {
       <Route exact path="/" component={Home} />
       <Route path="/signin" component={Signin} />
       <Route path='/signup' component={Signup} />
-      <Route path='/posts' render= {()=> <Posts headerFix={this.state.headerFix} />} />
-      <Route path='/post/:postID' render= {()=> <Posts headerFix={this.state.headerFix} />} />
+      <Route path='/posts' render= {props=> <Posts headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/post' render= {props=> <Post headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/user' render= {props=> <User headerFix={this.state.headerFix} {...props} />} />
     </div> 
     )
   }

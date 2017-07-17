@@ -28,7 +28,7 @@ class Posts extends  Component {
       <div>
         <Header isFixed={this.props.headerFix} user={{avatar: 'https://avatars4.githubusercontent.com/u/18083815?v=4&s=40'}} />
         <section className="posts-body">
-          <PostList shortPosts={testData} />
+          <PostList shortPosts={testData} containerClass="postList" />
           <History history={historyData} />
         </section>
       </div>
