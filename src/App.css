@@ -22,6 +22,10 @@ a:hover {
   text-decoration: underline;
 }
 
+input {
+  outline: none;
+}
+
 #root {
   background: #f9f9f9;
 } 
@@ -503,6 +507,7 @@ a:hover {
 .user-avatar {
   display: inline-block;
   width:  100%;
+  border-radius: 5px;
 }
 
 .user-name {
@@ -534,11 +539,12 @@ a:hover {
 .user-info-nav-item {
   font-size: 14px;
   padding: 0 20px;
+  line-height: 60px;
   color: #586069;
   border-bottom: 2px solid transparent;
 }
 
-.user-info-nav-item .selected {
+.selected {
   color: #24292e;
   border-bottom-color: #e36209;
 }

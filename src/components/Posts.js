@@ -23,6 +23,10 @@ class Posts extends  Component {
   constructor (props) {
     super(props) 
   }
+
+  componentDidMount () {
+    console.log(`user--->${this.props.store.getState().user}`)
+  }
   render () {
     return (
       <div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Header from './common/Header'
-import Comment from './common/Comment'
+import Comment from './comment/Comment'
 
 class Post extends Component {
   constructor (props) {

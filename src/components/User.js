@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom'
 import PostList from './common/PostList'
 import History from './common/History'
 import Header from './common/Header'
+import UserNav from './user/UserNav'
 
 const testData = [
   {"id":0,"title":"Manchester Welcomes Mobike","author":"Author: Mobike UK","date":"Date: 29th June","agree": 0, "comments": 1},
@@ -13,6 +14,11 @@ const testData = [
   {"id":5,"title":"Mobike Partners with Dow Chemical","link":"https://mobike.com/global/blog/post/dow-partners-mobike","author":"Author: Mobike Global","date":"Date: 25th May", "agree": 0, "comments": 1},
   {"id":6,"title":"Mobike, Qualcomm and the China Mobile Research Institute – The Future of IoT Technology","link":"https://mobike.com/global/blog/post/future-of-iot","author":"Author: Mobike Global","date":"Date: 25th May 2017", "agree": 0, "comments": 1},
   {"id":7,"title":"The Mobike White Paper: Bike-Share in the City","link":"https://mobike.com/global/blog/post/mobike-white-paper","author":"Author: Mobike Global","date":"Date: 19th May 2017", "agree": 0, "comments": 1}
+]
+
+const historyData = [
+  {"id":0,"title":"Manchester Welcomes Mobike", agree: 2},
+  {"id":1,"title":"Mobike Japan in Fukuoka", agree: 3}
 ]
 
 const User = props => (
@@ -26,16 +32,12 @@ const User = props => (
         <div className="user-bio"></div>
       </div>
       <div className="user-info">
-        <div className="user-info-nav">
-          <a href={`${props.match.url}/posts`} className="user-info-nav-item">posts</a>
-          <a href={`${props.match.url}/history`} className="user-info-nav-item">history</a>
-          <a href={`${props.match.url}/like`} className="user-info-nav-item">like</a>
-          <a href={`${props.match.url}/information`} className="user-info-nav-item">information</a>
-        </div>
+        <UserNav url={props.match.url} fullPath={props.location.pathname} />
         <div className="user-info-content">
           <Route path={`${props.match.url}/posts`} render={()=>
             <PostList containerClass="user-info-posts" shortPosts={testData} />} />
-          <Route path={`${props.match.url}/history`} component={History} />
+          <Route path={`${props.match.url}/history`} render={()=>
+            <History history={historyData} />} />
           <Route path={`${props.match.url}/like`} component={PostList} />
           <Route path={`${props.match.url}/information`}  />
         </div>
