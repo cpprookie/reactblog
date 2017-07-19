@@ -23,7 +23,7 @@ const historyData = [
 
 const User = props => (
   <div className="user">
-    <Header isFixed={props.headerFix} user={{avatar: 'https://avatars4.githubusercontent.com/u/18083815?v=4&s=40'}} />
+    <Header isFixed={props.headerFix} />
     <div className="user-wrapper">
       <div className="user-basic">
         <img src="https://avatars7.githubusercontent.com/u/18083815?v=4&s=460" alt="user-avatar" className="user-avatar"/>

@@ -1,5 +1,5 @@
 import React ,{Component} from 'react'
-import Header from './common/Header'
+import StatedHeader from '../containers/StatedHeader'
 import PostList from './common/PostList'
 import History from './common/History'
 
@@ -24,13 +24,10 @@ class Posts extends  Component {
     super(props) 
   }
 
-  componentDidMount () {
-    console.log(`user--->${this.props.store.getState().user}`)
-  }
   render () {
     return (
       <div>
-        <Header isFixed={this.props.headerFix} user={{avatar: 'https://avatars4.githubusercontent.com/u/18083815?v=4&s=40'}} />
+        <StatedHeader isFixed={this.props.headerFix} />
         <section className="posts-body">
           <PostList shortPosts={testData} containerClass="postList" />
           <History history={historyData} />

@@ -1,24 +1,38 @@
-import React from 'react'
+import React,{Component} from 'react'
+import {Link} from 'react-router-dom'
 
 const Header = props => (
   <div className={props.isFixed? "header-fixed" : "header"}>
     <div className="header-wrapper">
       <div className="header-content">
         <div className="header-logo">
-          <a href="/">R&B</a>
+          <Link to={props.user.username? '/posts': '/'}>R&B</Link>
         </div>
-        <div className="header-nav">
-          <a href="/post" className="nav-write">Write here</a>
-          <label className="nav-search">
-            <input type="text" placeholder="Search R&B..."/>
-          </label>
-          <a className="nav-user">
-            <img src={props.user.avatar} alt="avatar"/>
-          </a>
-        </div>
+        {props.user.username ? (
+          <div className="header-nav">
+            <Link to="/post">
+              <span className="nav-write">Write here</span>
+            </Link>
+            <label className="nav-search">
+              <input type="text" placeholder="Search R&B..."/>
+            </label>
+            <Link to='/user'>
+              <span className="nav-user">
+                <img src={props.user.avatar} alt="avatar"/>
+              </span>
+            </Link>
+          </div>
+          ) : (
+            <div className="header-nav">
+              <Link to="/signin">
+                <span className="nav-write">sign in</span>
+              </Link>
+            </div>
+          )}
       </div>
     </div>
   </div>
 )
 
 export default Header
+

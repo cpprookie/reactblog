@@ -9,11 +9,10 @@ function blogApp (state, action) {
 
   switch(action.type) {
     case 'SIGN_IN':
+      console.log(JSON.stringify(action.user))
       return Object.assign({}, state, {user: action.user})
-    break
     case 'SIGN_OUT':
       return Object.assign({}, state, {user: {}})
-    break
     default: 
       return state
   }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Redirect, Link} from 'react-router-dom'
 import axios from 'axios'
 
 class Signup extends Component {
@@ -7,7 +8,7 @@ class Signup extends Component {
     this.state = {
       username: '',
       password: '',
-      repeat: '',
+      repeat: ''
     }
     this.checkRepeat = this.checkRepeat.bind(this)
   }
@@ -50,6 +51,9 @@ class Signup extends Component {
   }
 
   render () {
+    if (this.state.redirectToSignin) {
+      return <Redirect to='/signin' />
+    }
     return (
       <div className="signup-wrapper">
         <div className="signin-logo">R&B</div>
@@ -66,7 +70,11 @@ class Signup extends Component {
             onChange={this.handleRepeat.bind(this)}/>
           <button onClick={this.handleSubmit.bind(this)}>sign up</button>
         </div>
-        <p className="had-account">Already have an account?<a href="/signin"> I will sign in</a></p>
+        <p className="had-account">Already have an account?
+          <Link to='/signin'>
+            <span> I will sign in</span>
+          </Link>       
+        </p>
       </div>
     )
   }

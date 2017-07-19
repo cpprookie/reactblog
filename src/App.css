@@ -147,7 +147,7 @@ input {
   padding: 15px 0;
 }
 
-.create-account a, .had-account a {
+.create-account span, .had-account span {
   color: #0366d6;
   text-decoration: underline;
   cursor: pointer;

@@ -2,19 +2,14 @@ import React, { Component } from 'react';
 import {Route} from 'react-router-dom'
 import './App.css';
 import Home from './components/Home'
-import Signin from './components/Signin'
+import SigninLink from './containers/SigninLink'
 import Signup from './components/Signup'
 import Posts from './components/Posts'
 import Post from './components/Post'
 import User from './components/User'
-import Mock from  'mockjs'
+// import Mock from  'mockjs'
 
-// import axios from 'axios'
-
-// import axios globally
-// if (!Window.$http) {
-//   Window.$http = axios
-// }
+import Mock from './mock'
 
 class App extends Component {
   constructor (props) {
@@ -41,7 +36,7 @@ class App extends Component {
     return (
     <div className="blog">
       <Route exact path="/" component={Home} />
-      <Route path="/signin" component={Signin} />
+      <Route path="/signin" component={SigninLink} />
       <Route path='/signup' component={Signup} />
       <Route path='/posts' render= {props=> <Posts headerFix={this.state.headerFix} {...props} />} />
       <Route path='/post' render= {props=> <Post headerFix={this.state.headerFix} {...props} />} />
@@ -50,20 +45,5 @@ class App extends Component {
     )
   }
 }
-
-// Mock data
-Mock.mock('/signin', options => {
-  var body = JSON.parse(options.body)
-  if(body.username === "mocktest" && body.password === "1234qwer") {
-    return {
-      success: true,
-      status: 200
-    }
-  }
-  return {
-    success: false,
-    status: 404
-  }
-})
 
 export default App;

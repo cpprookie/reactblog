@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Header from './common/Header'
+import StatedHeader from '../containers/StatedHeader'
 import Comment from './comment/Comment'
 
 class Post extends Component {
@@ -22,7 +22,7 @@ class Post extends Component {
   render () {
     return (
       <div className="post">
-        <Header isFixed={this.props.headerFix} user={{avatar: 'https://avatars4.githubusercontent.com/u/18083815?v=4&s=40'}} />
+        <StatedHeader isFixed={this.props.headerFix} />
         <div className="post-wrapper">
           <section className="post-content">
             <h1 className="post-title">{this.state.post.title}</h1>

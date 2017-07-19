@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {Redirect, Link} from 'react-router-dom'
 
 class Signin extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      redirectToIndex: false,
       username: '',
       password: ''
     }
@@ -20,6 +22,7 @@ class Signin extends Component {
 
   // Need an component used to show message!
   handleClick () {
+    console.log('click')
     if (!this.state.username.length) {
       console.log("Username can't be null!")
       return false
@@ -30,16 +33,24 @@ class Signin extends Component {
       return false
     }
 
+    // signin request
     axios.post('/signin',this.state)
       .then( ret=> {
-        if(ret.data.success) {
-          console.log('login success')
+        if(ret) {
+          console.log('signin invoked!')
+          this.props.userCache(ret.data.user)
+          this.setState({redirectToIndex: true})
         }
       })
       .catch(error => console.log(error))
   }
 
   render () {
+    // redirect to index after signing in
+    if(this.state.redirectToIndex) {
+      return <Redirect to="/posts" />
+    }
+
     return (
       <div className="signin-wrap">
         <div className="signin-logo">R&B</div>
@@ -51,7 +62,8 @@ class Signin extends Component {
           <input id="password" type="password" onChange={this.handlePassword.bind(this)} />
           <button onClick={this.handleClick.bind(this)}>submit</button>
         </div>
-        <p className="create-account">New to R&B?<a href="/signup">Create an account.</a></p>
+        <p className="create-account">New to R&B? 
+           <Link to='/signup'><span>Create an account.</span></Link></p>
       </div>
     )
   }
