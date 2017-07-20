@@ -55,26 +55,28 @@ class Signup extends Component {
       return <Redirect to='/signin' />
     }
     return (
-      <div className="signup-wrapper">
-        <div className="signin-logo">R&B</div>
-        <div className="signup-block">
-          <h1>Sign Up</h1>
-          <label htmlFor="username">Username</label>
-          <input name="username" type="text" id="username"
-            onChange={this.handleUsername.bind(this)}/>
-          <label htmlFor="password">Password</label>
-          <input name="password" type="password" id="password"
-            onChange={this.handlePassword.bind(this)} />
-          <label htmlFor="repeat">Repeat password</label>
-          <input name="repeat" type="password" id="repeat"
-            onChange={this.handleRepeat.bind(this)}/>
-          <button onClick={this.handleSubmit.bind(this)}>sign up</button>
+      <div className="signup">
+        <div className="signup-wrap">
+          <div className="signin-logo">R&B</div>
+          <div className="signup-block">
+            <h1>Sign Up</h1>
+            <label htmlFor="username">Username</label>
+            <input name="username" type="text" id="username"
+              onChange={this.handleUsername.bind(this)}/>
+            <label htmlFor="password">Password</label>
+            <input name="password" type="password" id="password"
+              onChange={this.handlePassword.bind(this)} />
+            <label htmlFor="repeat">Repeat password</label>
+            <input name="repeat" type="password" id="repeat"
+              onChange={this.handleRepeat.bind(this)}/>
+            <button onClick={this.handleSubmit.bind(this)}>sign up</button>
+          </div>
+          <p className="had-account">Already have an account?
+            <Link to='/signin'>
+              <span> I will sign in</span>
+            </Link>       
+          </p>
         </div>
-        <p className="had-account">Already have an account?
-          <Link to='/signin'>
-            <span> I will sign in</span>
-          </Link>       
-        </p>
       </div>
     )
   }

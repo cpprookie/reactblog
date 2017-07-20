@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 
 const Header = props => (
@@ -6,11 +6,11 @@ const Header = props => (
     <div className="header-wrapper">
       <div className="header-content">
         <div className="header-logo">
-          <Link to={props.user.username? '/posts': '/'}>R&B</Link>
+          <Link to={props.user.userName? '/posts': '/'}>R&B</Link>
         </div>
-        {props.user.username ? (
+        {props.user.userName ? (
           <div className="header-nav">
-            <Link to="/post">
+            <Link to="/new-post">
               <span className="nav-write">Write here</span>
             </Link>
             <label className="nav-search">

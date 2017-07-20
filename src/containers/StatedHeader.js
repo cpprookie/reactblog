@@ -1,5 +1,4 @@
 import Header from '../components/common/Header'
-import {signin} from '../actions'
 import {connect} from 'react-redux'
 
 const mapStateToProps = state => {

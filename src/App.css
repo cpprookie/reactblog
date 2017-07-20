@@ -1,4 +1,4 @@
-html, body, section, div, input, a, textarea {
+html, body, section, div, input, a, textarea, h1 {
   margin: 0;
   padding: 0;
   font-family:sans-serif, Open Sans,Helvetica Neue,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei;
@@ -8,8 +8,16 @@ html, body, section, div, input, a, textarea {
   box-sizing: border-box;
 }
 
-body, #root  {
+html, body, #root , .blog, .signin, .signup {
   height: 100%;
+}
+
+html {
+  background: #fff;
+}
+
+.App {
+  text-align: center;
 }
 
 a {
@@ -18,24 +26,9 @@ a {
   cursor: pointer;  
 }
 
-a:hover {
-  text-decoration: underline;
-}
 
 input {
   outline: none;
-}
-
-#root {
-  background: #f9f9f9;
-} 
-
-.body {
-  overflow-x: hidden;
-}
-
-.App {
-  text-align: center;
 }
 
 .home {
@@ -61,7 +54,15 @@ input {
   font-size: 16px;
 }
 
-.signin-wrap, .signup-wrapper {
+.home-tag a {
+  text-decoration: underline;
+}
+
+.signin, .signup {
+  background-color: #f9f9f9;
+}
+
+.signin-wrap, .signup-wrap {
   max-width: 340px;
   margin: 0 auto;
   padding-top: 30px;
@@ -153,12 +154,15 @@ input {
   cursor: pointer;
 }
 
+.header, .header-fixed {
+  height: 50px;
+}
+
 /* Header  common component*/
 .header-wrapper {
   position: absolute;
   top: 0;
   left: 0;
-  height: 30px;
   width: 100%;
   padding: 12px 0;
   color: #262930;
@@ -270,7 +274,8 @@ input {
 .posts-body {
   max-width: 980px;
   display: flex;
-  margin: 50px auto 0px;
+  margin: 0 auto;
+  padding-top: 30px;
 }
 
 .postList {
@@ -286,13 +291,17 @@ input {
 
 .postItem-title, .post-title {
   color: #262930;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .postItem-info, .post-info {
   color: #666;
   font-size: 13px;
   margin-bottom: 10px;
+}
+
+.postItem-info-date {
+  margin-left: 10px;
 }
 
 .postItem-footer {
@@ -318,7 +327,6 @@ input {
 .posts-history {
   width: 33.333%;
   border: none;
-  margin-top: 50px;
   padding: 0 10px;
 }
 

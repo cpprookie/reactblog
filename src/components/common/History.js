@@ -14,6 +14,6 @@ const History = props => (
       </ul>
     </div>
   </div>
-)
+) 
 
 export default History

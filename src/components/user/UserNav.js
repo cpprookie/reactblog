@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
 const UserNavItem = props => 
-  <a href={`${props.url}/${props.subPath}`} 
-     className={props.itemClass}>{props.subPath}</a>
+  <span className={props.itemClass}>
+    <Link to={`${props.url}/${props.subPath}`}>{props.subPath}</Link></span>
 
 class UserNav extends Component {
   constructor(props) {

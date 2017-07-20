@@ -52,18 +52,20 @@ class Signin extends Component {
     }
 
     return (
-      <div className="signin-wrap">
-        <div className="signin-logo">R&B</div>
-        <div className="signin-block">
-          <h1>sign in </h1>
-          <label htmlFor="username">Username</label>
-          <input id="username" type="text" onChange={this.handleUsername.bind(this)} autoFocus/>
-          <label htmlFor="password">Password</label>
-          <input id="password" type="password" onChange={this.handlePassword.bind(this)} />
-          <button onClick={this.handleClick.bind(this)}>submit</button>
+      <div className="signin">
+        <div className="signin-wrap">
+          <div className="signin-logo">R&B</div>
+          <div className="signin-block">
+            <h1>sign in </h1>
+            <label htmlFor="username">Username</label>
+            <input id="username" type="text" onChange={this.handleUsername.bind(this)} autoFocus/>
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" onChange={this.handlePassword.bind(this)} />
+            <button onClick={this.handleClick.bind(this)}>submit</button>
+          </div>
+          <p className="create-account">New to R&B? 
+            <Link to='/signup'><span>Create an account.</span></Link></p>
         </div>
-        <p className="create-account">New to R&B? 
-           <Link to='/signup'><span>Create an account.</span></Link></p>
       </div>
     )
   }

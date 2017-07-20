@@ -4,7 +4,8 @@ import './App.css';
 import Home from './components/Home'
 import SigninLink from './containers/SigninLink'
 import Signup from './components/Signup'
-import Posts from './components/Posts'
+import StatedPosts from './containers/StatedPosts'
+import StatedNewPost from './containers/StatedNewPost'
 import Post from './components/Post'
 import User from './components/User'
 // import Mock from  'mockjs'
@@ -38,9 +39,10 @@ class App extends Component {
       <Route exact path="/" component={Home} />
       <Route path="/signin" component={SigninLink} />
       <Route path='/signup' component={Signup} />
-      <Route path='/posts' render= {props=> <Posts headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/posts' render= {props=> <StatedPosts headerFix={this.state.headerFix} {...props} />} />
       <Route path='/post' render= {props=> <Post headerFix={this.state.headerFix} {...props} />} />
-      <Route path='/user' render= {props=> <User headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/user/:userID' render= {props=> <User headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/new-post' component={StatedNewPost} />  
     </div> 
     )
   }

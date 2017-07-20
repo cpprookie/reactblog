@@ -6,7 +6,7 @@ class Post extends Component {
   constructor (props) {
     super(props)
     this.state = { post: {
-      "id":0,
+      "postID":0,
       "title":"Manchester Welcomes Mobike",
       "author":"Mobike UK",
       "date":"29th June",
