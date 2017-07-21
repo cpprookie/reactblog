@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import StatedHeader from '../containers/StatedHeader'
 import Comment from './comment/Comment'
+import ReactMarkdown from 'react-markdown'
 
 class Post extends Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class Post extends Component {
       "date":"29th June",
       "agree": 0, 
       "comments": 1,
-      "content": "Areas of high-traffic and need have been identified to begin. Mobike will work closely with local partners and authorities (TfGM, and Manchester and Salford City councils) to identify suitable additional locations that will best service users and the city alike."
+      "content": "### Test\n----\n#### what will happen?\n`var test = 'test'`"
       }
     }
   }
@@ -30,7 +31,7 @@ class Post extends Component {
               {this.props.isAuthor ? null : (<div className="post-info-author"></div>)}
               <div className="post-info-date">{this.state.post.date}</div>
             </div>
-            <div className="post-body">{this.state.post.content}</div>
+            <div className="post-body"><ReactMarkdown source={this.state.post.content} /></div>
             <div className="post-footer">
               <div className="post-agree">{this.state.post.agree}</div>
               <div className="post-comment">{this.state.post.comment}</div>
