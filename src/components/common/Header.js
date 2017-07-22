@@ -8,6 +8,12 @@ const Header = props => (
         <div className="header-logo">
           <Link to={props.user.userName? '/posts': '/'}>R&B</Link>
         </div>
+        <input type="checkbox" id="dropdown-trigger" className="dropdown-trigger"/>
+        <div className="dropdown-menu">
+              <div className="dropdown-menu-header">Signed in as {props.user.userName}</div>
+              <span className="dropdown-menu-item"><Link to={`/user/${props.user.userID}`}>Profile</Link></span>
+              <span className="dropdown-menu-item">Sign out</span>
+            </div>
         {props.user.userName ? (
           <div className="header-nav">
             <Link to="/new-post">
@@ -16,11 +22,11 @@ const Header = props => (
             <label className="nav-search">
               <input type="text" placeholder="Search R&B..."/>
             </label>
-            <Link to='/user'>
+            <label htmlFor="dropdown-trigger">
               <span className="nav-user">
                 <img src={props.user.avatar} alt="avatar"/>
               </span>
-            </Link>
+            </label>
           </div>
           ) : (
             <div className="header-nav">
@@ -29,7 +35,7 @@ const Header = props => (
               </Link>
             </div>
           )}
-      </div>
+        </div>
     </div>
   </div>
 )
