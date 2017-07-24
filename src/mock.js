@@ -38,4 +38,8 @@ Mock.mock(`/test01/history`, ()=> {
   }
 })
 
+Mock.mock('/test01/signout', ()=> {
+  return {logout: true}
+})
+
 export default Mock

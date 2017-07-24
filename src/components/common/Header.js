@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import SignoutConfirm from '../../containers/SignoutConfirm'
 
 const Header = props => (
   <div className={props.isFixed? "header-fixed" : "header"}>
@@ -9,11 +10,13 @@ const Header = props => (
           <Link to={props.user.userName? '/posts': '/'}>R&B</Link>
         </div>
         <input type="checkbox" id="dropdown-trigger" className="dropdown-trigger"/>
-        <div className="dropdown-menu">
-              <div className="dropdown-menu-header">Signed in as {props.user.userName}</div>
-              <span className="dropdown-menu-item"><Link to={`/user/${props.user.userID}`}>Profile</Link></span>
-              <span className="dropdown-menu-item">Sign out</span>
-            </div>
+        <SignoutConfirm />
+        {props.user.userName ? (
+          <div className="dropdown-menu">
+            <div className="dropdown-menu-header">Signed in as {props.user.userName}</div>
+            <span className="dropdown-menu-item"><Link to={`/user/${props.user.userID}`}>Profile</Link></span>
+            <span className="dropdown-menu-item" onClick={props.openSignoutDialog}>Sign out</span>
+          </div>) : null}
         {props.user.userName ? (
           <div className="header-nav">
             <Link to="/new-post">
