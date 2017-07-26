@@ -2,6 +2,7 @@ import React ,{Component} from 'react'
 import StatedHeader from '../containers/StatedHeader'
 import PostList from './common/PostList'
 import History from './common/History'
+import Pagination from './common/Pagination'
 import axios from 'axios'
 
 
@@ -33,6 +34,7 @@ class Posts extends  Component {
           <PostList shortPosts={this.state.postList} containerClass="postList" />
           {this.props.user.userName ? <History history={this.state.browsedHistory} />: null}
         </section>
+        <Pagination totalPages={10} />
       </div>
     )
   }

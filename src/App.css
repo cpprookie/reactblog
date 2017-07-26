@@ -778,6 +778,39 @@ input,button {
   color: green;
 }
 
+.pagination {
+  padding: 16px 20px;
+  border: 1px solid #e7eaf1;
+  background: #fff;
+  text-align: center;
+  margin: 0 auto;
+}
 
+.pagination-items {
+  
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-item {
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+  border: none;
+  padding:  0 15px;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: default; 
+}
+
+.pagination-button {
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
 
