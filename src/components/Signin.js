@@ -7,13 +7,13 @@ class Signin extends Component {
     super(props)
     this.state = {
       redirectToIndex: false,
-      username: '',
+      userName: '',
       password: ''
     }
   }
 
-  handleUsername (e) {
-    this.setState({username: e.target.value})
+  handleuserName (e) {
+    this.setState({userName: e.target.value})
   }
 
   handlePassword (e) {
@@ -23,8 +23,8 @@ class Signin extends Component {
   // Need an component used to show message!
   handleClick () {
     console.log('click')
-    if (!this.state.username.length) {
-      console.log("Username can't be null!")
+    if (this.state.userName.length === 0) {
+      console.log("userName can't be null!")
       return false
     }
 
@@ -34,10 +34,11 @@ class Signin extends Component {
     }
 
     // signin request
-    axios.post('/signin',this.state)
+    axios.post('/signin',{userName: this.state.userName, password:this.state.password})
       .then( ret=> {
+        console.log('signin invoked!')
         if(ret) {
-          console.log('signin invoked!')
+          console.log(ret)
           this.props.userCache(ret.data.user)
           this.setState({redirectToIndex: true})
         }
@@ -57,8 +58,8 @@ class Signin extends Component {
           <div className="signin-logo">R&B</div>
           <div className="signin-block">
             <h1>sign in </h1>
-            <label htmlFor="username">Username</label>
-            <input id="username" type="text" onChange={this.handleUsername.bind(this)} autoFocus/>
+            <label htmlFor="userName">userName</label>
+            <input id="userName" type="text" onChange={this.handleuserName.bind(this)} autoFocus/>
             <label htmlFor="password">Password</label>
             <input id="password" type="password" onChange={this.handlePassword.bind(this)} />
             <button onClick={this.handleClick.bind(this)}>submit</button>

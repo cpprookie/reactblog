@@ -5,6 +5,7 @@ import Home from './components/Home'
 import SigninLink from './containers/SigninLink'
 import Signup from './components/Signup'
 import StatedPosts from './containers/StatedPosts'
+import StatedPost from './containers/StatedPost'
 import StatedNewPost from './containers/StatedNewPost'
 import Post from './components/Post'
 import User from './components/User'
@@ -40,7 +41,7 @@ class App extends Component {
       <Route path="/signin" component={SigninLink} />
       <Route path='/signup' component={Signup} />
       <Route path='/posts' render= {props=> <StatedPosts headerFix={this.state.headerFix} {...props} />} />
-      <Route path='/post' render= {props=> <Post headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/post' render= {props=> <StatedPost headerFix={this.state.headerFix} {...props} />} />
       <Route path='/user/:userID' render= {props=> <User headerFix={this.state.headerFix} {...props} />} />
       <Route path='/new-post' component={StatedNewPost} />  
     </div> 

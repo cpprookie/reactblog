@@ -11,7 +11,7 @@ class UserNav extends Component {
   }
 
   render () {
-    const itemPaths = ['posts', 'history', 'like', 'information']
+    const itemPaths = ['posts', 'history','information']
     return (
       <div className="user-info-nav">
         {itemPaths.map(item => {

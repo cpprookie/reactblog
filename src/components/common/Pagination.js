@@ -60,9 +60,8 @@ class Pagination extends Component {
    * @param {*} value 为下一个currentPage 
    */
   updatePageList (value) {
-    console.log(`value---->${value}`)
     this.setState({currentPage: value})
-    
+    this.props.switchPage(value)
     let pages = this.props.totalPages
     if (pages < 7)  {
       return false

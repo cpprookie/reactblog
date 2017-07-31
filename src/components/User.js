@@ -33,7 +33,6 @@ const User = props => (
             <PostList containerClass="user-info-posts" shortPosts={testData} />} />
           <Route path={`${props.match.url}/history`} render={()=>
             <History history={historyData} />} />
-          <Route path={`${props.match.url}/like`} component={PostList} />
           <Route path={`${props.match.url}/information`}  />
         </div>
       </div>

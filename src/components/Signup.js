@@ -6,7 +6,7 @@ class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
+      userName: '',
       password: '',
       repeat: ''
     }
@@ -14,7 +14,7 @@ class Signup extends Component {
   }
 
   handleUsername (e) {
-    this.setState({username: e.target.value})
+    this.setState({userName: e.target.value})
   }
 
   handlePassword (e) {
@@ -33,7 +33,7 @@ class Signup extends Component {
   }
 
   handleSubmit () {
-    if (!this.state.username) {
+    if (!this.state.userName) {
       console.log("Username can't be null!")
       return false;
     }
@@ -41,11 +41,10 @@ class Signup extends Component {
       console.log("Illegal password format!")
       return false
     }
-    if(!this.checkRepeat()) {
-      return false
-    }
+    this.checkRepeat()
+    console.log('success')
     axios.post('/signup', {
-      username: this.state.username,
+      userName: this.state.userName,
       password: this.state.password
     }).then(()=>{console.log("successful signup!")}).catch(e=>{console.log(e.message)})
   }

@@ -22,9 +22,6 @@ const Header = props => (
             <Link to="/new-post">
               <span className="nav-write">Write here</span>
             </Link>
-            <label className="nav-search">
-              <input type="text" placeholder="Search R&B..."/>
-            </label>
             <label htmlFor="dropdown-trigger">
               <span className="nav-user">
                 <img src={props.user.avatar} alt="avatar"/>

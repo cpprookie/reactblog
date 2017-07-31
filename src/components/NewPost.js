@@ -2,38 +2,37 @@ import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import axios from 'axios'
+import StatedBlogEdit from '../containers/StatedBlogEdit'
 
 class NewPost extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      body: '',
-      previewFlag: false
+      submitSuccess: false,
+      createPostID: ''
     }
   }
 
-  handleTitle (e) {
-    this.setState({title: e.target.value})
-  }
-
-  handleBody (e) {
-    this.setState({body: e.target.value})
-  }
-
-  handleWrite (e) {
-    this.setState({previewFlag: false})
-  }
-
-  handlePreview (e) {
-    this.setState({previewFlag: true})
+  submitPost (post) {
+    axios.put(`/user/${this.props.user.userID}/post`,post)
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            submitSuccess: true,
+            createPostID: res.data.createPost._id
+          })
+        }
+      })
   }
 
   render () {
       if (!this.props.user.userName) {
         return <Redirect to='/signin' />
       }
-
+      if (this.state.submitSuccess) {
+        return <Redirect to={`/post/${this.state.createPostID}`} />
+      }
       return (
         <div className="new-post">
           <div className="header">
@@ -52,34 +51,7 @@ class NewPost extends Component {
               </div>
             </div>
           </div>
-          <div className="new-post-content">
-            <div className="new-post-title">
-              <input placeholder="title..." onChange={this.handleTitle.bind(this)} 
-                     value={this.state.title}/>
-            </div>
-            <div className="new-post-body">
-              <div className="new-post-body-nav">
-                <div className="new-post-body-tabs">
-                  <button className={`new-post-body-tab ${!this.state.previewFlag? `selected`:``}`} 
-                    onClick={this.handleWrite.bind(this)}>Write</button>
-                  <button className={`new-post-body-tab ${this.state.previewFlag? `selected`:``}`}
-                    onClick={this.handlePreview.bind(this)}>Preview</button>
-                </div>
-                <div className="new-post-body-nav-info">
-                  Styling with markdown!
-                </div>
-              </div>
-              <div className="new-post-body-container">
-                {!this.state.previewFlag ?  <textarea 
-                      onChange={this.handleBody.bind(this)} placeholder="This is your breakpoint..." 
-                      value={this.state.body}>
-                  </textarea> : <ReactMarkdown source={this.state.body} />}
-              </div>
-            </div>
-          </div>
-          <div className="new-post-footer">
-             <button>submit</button>
-          </div>
+          <StatedBlogEdit pattern="author" submitPost={this.submitPost.bind(this)} />
         </div>
       )
     }

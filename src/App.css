@@ -1,4 +1,4 @@
-html, body, section, div, input, a, textarea, h1 {
+html, body, section, div, input, a, textarea, h1,h2 {
   margin: 0;
   padding: 0;
   font-family:sans-serif, Open Sans,Helvetica Neue,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei;
@@ -168,6 +168,7 @@ input,button {
 
 .header-fixed .header-wrapper {
   position: fixed;
+  z-index: 3;
   background-color: #24292e;
   animation-name: FadeInDown;
   animation-duration: 0.2s;
@@ -349,46 +350,40 @@ input,button {
 .postList {
   width: 66.666667%;
   padding: 0 10px;
+}
+
+.post-list{
   list-style: none;
+  padding: 0;
 }
 
 .postItem {
-  padding-bottom: 20px;
+  padding: 10px 5px;
   border-bottom: 1px solid #eff3f6;
 }
 
 .postItem-title, .post-title {
-  color: #262930;
-  font-weight: 400;
+  color: #24292e;
+  font-size: 24px;
+  line-height: 32px;
+  padding-bottom: 10px;
+}
+
+.postItem-title:hover{
+  text-decoration: underline;
 }
 
 .postItem-info, .post-info {
   color: #666;
   font-size: 13px;
-  margin-bottom: 10px;
 }
 
-.postItem-info-date {
-  margin-left: 10px;
+.postItem-info-date,.postItem-agree, .postItem-comments {
+  margin-left: 15px;
 }
 
-.postItem-footer {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.postItem-footer-right {
-  float: right;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.postItem-agree, .postItem-comments {
-  margin-right: 10px;
-  font-size: 16px;
-  line-height: 24px;
+.postItem-info-author a {
+  color: #666;
 }
 
 /* posts-history common componen*/
@@ -472,12 +467,23 @@ input,button {
   padding-bottom: 40px;
 }
 
-.post-footer{
-  position: absolute;
-  right: 0;
-  bottom: 10px;
+.post-footer-comment {
+  font-size: 15px;
+  line-height: 24px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.post-footer-comment:hover {
+  color: #24292e;
+}
+
+.post-info {
+  display: flex;
+  vertical-align: center;
+  justify-content: flex-start;
   font-size: 14px;
-  margin-right: 10px;
+  line-height: 24px;
 }
 
 .post-title {
@@ -485,43 +491,77 @@ input,button {
 }
 
 .comments-container {
-  width: 100%;
   border: 1px solid #e7eaf2;
+}
+
+.comments-topbar {
+  display: flex;
+  border: 1px solid #f0f2f7;
+  height: 50px;
+  padding: 0 20px;
+  align-items: center;
+  justify-content: flex-start; 
+}
+
+.topbar-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e1e1e;
 }
 
 .comment-list-wrapper {
   padding: 0 15px;
 }
 
-.comment-list-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.comment-item {
+  padding: 12px 16px 10px;
+  font-size: 15px;
+  border-bottom: 1px solid #f0f2f7;
 }
 
-.comment-list-item-meta {
+.comment-item-meta {
   position: relative;
   height: 27px;
   line-height: 24px;
+  padding-right: 3px;
+  padding-left: 1px;
   font-size: 18px;
   margin-bottom: 5px;
 }
 
-.comment-list-item-meta-time {
+.userLink-avatar {
+  border-radius: 2px;
+  vertical-align: top;
+}
+
+.userLink-userName {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.comment-item-time {
   position: absolute;
   right: 0;
   top: 0;
   color: #8590a6;
+  font-size: 14px;
 }
 
-.comment-list-item-content {
+.comment-item-content {
   margin-bottom: 5px;
   line-height: 24px;
 }
 
-.comment-list-item-footer {
-  height: 24px;
+.comment-item-delete {
+  display: none;
+  color: #8590a6;
+  font-size: 14px;
   line-height: 24px;
+  cursor: pointer;
+}
+
+.comment-item:hover .comment-item-delete {
+  display: block;
 }
 
 .comment-form{
@@ -560,11 +600,6 @@ input,button {
 
 .comment-submit:focus {
   outline:  none;
-}
-
-.comment-submit:hover {
-  background-image: linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
-  background-image: -webkit-linear-gradient(-180deg, #2fcb53 0%, #269f42 90%);
 }
 
 /* Page user */
@@ -641,17 +676,17 @@ input,button {
   padding-right: 10px;
 }
 
-.new-post-content {
+.post-content {
   max-width: 980px;
   margin: 0 auto;
   padding-top: 20px;
 }
 
-.new-post-title {
+.post-title {
   height: 50px;
 }
 
-.new-post-title input {
+.post-title input {
   border: none;
   font-size: 32px;
   line-height: 40px;
@@ -660,11 +695,11 @@ input,button {
 }
 
 
-.new-post-body {
+.post-body {
   padding-top: 10px;
 }
 
-.new-post-body-nav {
+.post-body-nav {
   background-color: #f6f8fa;
   padding: 6px 10px 0;
   display: flex;
@@ -673,7 +708,7 @@ input,button {
 }
 
 
-.new-post-body-tab {
+.post-body-tab {
   border: none;
   font-size: 20px;
   background-color: #f6f8fa;
@@ -691,17 +726,17 @@ input,button {
   border-bottom: 0;
 }
 
-.new-post-body-nav-info {
+.post-body-nav-info {
   color: #586069;
 }
 
-.new-post-body-container {
+.post-body-container {
   padding: 0 10px;
   margin-top: 20px;
   border-top: 1px solid #d1d5da;
 }
 
-.new-post-body-container textarea {
+.post-body-container textarea {
   margin-top: 10px;
   border: none;
   width: 100%;
@@ -711,14 +746,14 @@ input,button {
   line-height: 20px;
 }
 
-.new-post-footer {
+.post-footer {
   max-width: 980px;
   margin: 20px auto;
   border-top: 1px solid #ccc;
   padding-top: 5px;
 }
 
-.new-post-footer button {
+.post-footer button {
   border: none;
   outline: none;
   font-size: 24px;
@@ -729,13 +764,13 @@ input,button {
   cursor: pointer;
 }
 
-.new-post-footer button:hover {
+.post-footer button:hover {
   background-color: #2fcb53;
 }
 
 .modal {
   position: fixed;
-  z-index: 3;
+  z-index: 5;
   left: 0;
   top: 0;
   width: 100%;
@@ -745,9 +780,16 @@ input,button {
   background-color: rgba(0,0,0,0.6); 
 }
 
-.modal-cotent {
+.modal-content {
   background-color: #fefefe;
-  margin: auto;
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  height: 100px;
+  width: 600px;
+  margin-top: -50px;
+  margin-left: -300px;
   padding: 0 20px;
 }
 
@@ -764,17 +806,21 @@ input,button {
   right: 0;
 }
 
-.modal-no {
+.modal-footer-buttons button {
   font-size: 24px;
   line-height: 32px;
+  width: 50px;
+  margin-left: 10px;
+  background: none;
   border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.modal-footer-no:hover {
   color: red;
 }
 
-.modal-yes {
-  font-size: 24px;
-  line-height: 32px;
-  border: 1px solid #ccc;
+.modal-footer-yes:hover {
   color: green;
 }
 
