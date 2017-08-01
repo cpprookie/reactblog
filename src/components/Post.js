@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import StatedHeader from '../containers/StatedHeader'
 import Comment from './comment/Comment'
 import StatesBlogEdit from '../containers/StatedBlogEdit'
-import ReactMarkdown from 'react-markdown'
 import axios from 'axios'
+import {Redirect, Link} from 'react-router-dom'
+
 /**
  * @todo 页面数据初始化放在 componentWillMount里去做
  */
@@ -19,12 +20,25 @@ class Post extends Component {
             "userName": "",
             "avatar": ""
         },
-        "content": "This project is almost done",
+        "content": "",
       },
       commentToggleFlag: false,
+      redirectToPosts: false,
+      authorEditFlag: false,
       comments: []
     }
   }
+
+  deletePost () {
+    // after deleting post , redirect to '/posts'
+    axios.delete(`/user/${this.props.user.userID}/post/${this.state.post._id}`)
+      .then(res => {
+        if (res.data.success) {
+          this.setState({redirectToPosts: true})
+        }
+      })
+  }
+
 
   // add record in user history if logged
   componentWillMount () {
@@ -38,34 +52,56 @@ class Post extends Component {
           this.setState({post: res.data.post})
         }
       }).catch(e => {console.log(e.message)})
-
-    // if(this.props.user.userID) {
-    //   axios.get(`/user/${this.props.user.userID}/`)
-    //        .catch(e => {console.log(e.message)})
-    // }
   }
+
   toggleComments () {
     console.log('comments toglle')
     this.setState(prevState => {
       return {commentToggleFlag: !prevState.commentToggleFlag}
     })
   }
+
   render () {
+    if (this.state.redirectToPosts) {
+      return <Redirect to="/posts" />
+    }
+
+    let isAuthor = this.props.user.userID === this.state.post.author._id
     return (
       <div className="post">
         <StatedHeader isFixed={this.props.headerFix} />
         <div className="post-wrapper">
-          <StatesBlogEdit />
+          <StatesBlogEdit pattern="view" post={this.state.post} />
           <footer>
-            <div className="post-info">
-              {this.props.user.userId === this.state.post.author._id ? null : (<div className="post-info-author"></div>)}
-              <div className="post-info-date">edit at: {this.state.post.lastEditTime}</div>
-              <div className="post-footer-comment" onClick={this.toggleComments.bind(this)}>
-              {this.state.commentToggleFlag ? 'toggle' : `comments(${this.state.post.comments})`}</div>
+            <div className="post-footer">
+              {isAuthor ? null : 
+                <span className="post-footer-link">
+                  <Link to={`/user/${this.state.post.author._id}`}>
+                    author: {this.state.post.author.userName}
+                  </Link>
+                </span>}
+              <span className="post-footer-date">
+                 publish at: {this.state.post.lastEditTime}
+              </span>
+              <span className="post-footer-comment clickable" onClick={this.toggleComments.bind(this)}>
+                {this.state.commentToggleFlag ? 'toggle' : `comments(${this.state.post.comments})`}
+              </span>
+              {isAuthor ? 
+                <div className="post-footer-action">
+                  <span className="post-footer-link" onClick={()=> this.setState({authorEditFlag: true})}>
+                    <Link to={{
+                      pathname: "/edit-post",
+                      state: {post: this.state.post}
+                    }}>edit</Link> 
+                  </span>
+                  <span className="clickable" onClick={this.deletePost.bind(this)}>
+                    delete
+                  </span>
+                </div> : null}
             </div>
             
               {this.state.commentToggleFlag?  <Comment totalComments={11} 
-                isAuthor={this.state.post.author._id === this.props.user.userID} 
+                isAuthor={isAuthor} 
                 userID={this.props.user.userID} /> : null}
           </footer>
           {/**

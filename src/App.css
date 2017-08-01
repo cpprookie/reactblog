@@ -452,38 +452,37 @@ input,button {
   max-width: 980px;
 }
 
-.post-content {
-  position: relative;
-}
-
-
-.post-info-user, .post-info-date {
-  text-align: right;
-}
 .post-body {
   margin: 20px 0;
-  color: #666;
   font-size: 15px;
   padding-bottom: 40px;
 }
 
-.post-footer-comment {
+.post-footer span{
+  color: #666;
   font-size: 15px;
   line-height: 24px;
-  cursor: pointer;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.post-footer-comment:hover {
+.post-footer-link a {
+  color: #666;
+}
+
+.post-footer-link a:hover {
   color: #24292e;
 }
 
-.post-info {
-  display: flex;
-  vertical-align: center;
-  justify-content: flex-start;
-  font-size: 14px;
-  line-height: 24px;
+.post-footer-action {
+  display: inline;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  color: #24292e;
 }
 
 .post-title {
@@ -749,23 +748,29 @@ input,button {
 .post-footer {
   max-width: 980px;
   margin: 20px auto;
-  border-top: 1px solid #ccc;
   padding-top: 5px;
 }
 
-.post-footer button {
+.post-edit-footer button {
   border: none;
   outline: none;
   font-size: 24px;
   line-height: 30px;
-  background-color: #269f42; 
+  margin-right: 20px;
   color: #fff;
   max-width: 100px;
   cursor: pointer;
 }
 
-.post-footer button:hover {
+.post-edit-submit {
+  background-color: #269f42; 
+}
+.post-edit-submit button:hover {
   background-color: #2fcb53;
+}
+
+.post-edit-cancel {
+  background-color: #f05b48
 }
 
 .modal {

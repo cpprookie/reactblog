@@ -43,7 +43,7 @@ class App extends Component {
       <Route path='/posts' render= {props=> <StatedPosts headerFix={this.state.headerFix} {...props} />} />
       <Route path='/post' render= {props=> <StatedPost headerFix={this.state.headerFix} {...props} />} />
       <Route path='/user/:userID' render= {props=> <User headerFix={this.state.headerFix} {...props} />} />
-      <Route path='/new-post' component={StatedNewPost} />  
+      <Route path='/edit-post' component={StatedNewPost} />  
     </div> 
     )
   }

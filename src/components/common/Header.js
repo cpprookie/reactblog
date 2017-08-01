@@ -19,7 +19,7 @@ const Header = props => (
           </div>) : null}
         {props.user.userName ? (
           <div className="header-nav">
-            <Link to="/new-post">
+            <Link to="/edit-post">
               <span className="nav-write">Write here</span>
             </Link>
             <label htmlFor="dropdown-trigger">

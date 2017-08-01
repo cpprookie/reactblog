@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {Redirect, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class Signin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      redirectToIndex: false,
       userName: '',
       password: ''
     }
@@ -38,19 +37,14 @@ class Signin extends Component {
       .then( ret=> {
         console.log('signin invoked!')
         if(ret) {
-          console.log(ret)
           this.props.userCache(ret.data.user)
-          this.setState({redirectToIndex: true})
+          this.props.history.replace('/posts')
         }
       })
       .catch(error => console.log(error))
   }
 
   render () {
-    // redirect to index after signing in
-    if(this.state.redirectToIndex) {
-      return <Redirect to="/posts" />
-    }
 
     return (
       <div className="signin">

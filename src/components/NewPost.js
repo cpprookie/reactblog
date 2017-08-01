@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import {Link} from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
 import axios from 'axios'
 import StatedBlogEdit from '../containers/StatedBlogEdit'
 
@@ -9,19 +8,34 @@ class NewPost extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      submitSuccess: false,
-      createPostID: ''
+      submitSuccess: false,  //控制页面跳转，无论新建或是更新，请求成功后都会跳转至浏览页面。
+      renderPostID: '' // 新建或更新的文档ID
     }
   }
 
+  cancel () {
+    console.log('called')
+    this.props.history.goBack()
+  }
+
+
   submitPost (post) {
+    // edit post
+    if (this.props.location.state.post) {
+      const postID = this.props.location.state.post._id
+      axios.post(`/user/${this.props.user.userID}/post/${postID}`,post)
+      .then(res => {
+        if (res.data.success) {
+          console.log(res.data)
+          this.props.history.push(`/post/${res.data.editPost._id}`)
+        }
+      })
+    }
+    // create post
     axios.put(`/user/${this.props.user.userID}/post`,post)
       .then(res => {
         if (res.data.success) {
-          this.setState({
-            submitSuccess: true,
-            createPostID: res.data.createPost._id
-          })
+          this.props.history.push(`/post/${res.data.createPost._id}`)
         }
       })
   }
@@ -30,9 +44,7 @@ class NewPost extends Component {
       if (!this.props.user.userName) {
         return <Redirect to='/signin' />
       }
-      if (this.state.submitSuccess) {
-        return <Redirect to={`/post/${this.state.createPostID}`} />
-      }
+
       return (
         <div className="new-post">
           <div className="header">
@@ -51,7 +63,9 @@ class NewPost extends Component {
               </div>
             </div>
           </div>
-          <StatedBlogEdit pattern="author" submitPost={this.submitPost.bind(this)} />
+          <StatedBlogEdit pattern="edit" 
+             post ={this.props.location.state ? this.props.location.state.post: {}} 
+            submitPost={this.submitPost.bind(this)} cancel={this.cancel.bind(this)} />
         </div>
       )
     }

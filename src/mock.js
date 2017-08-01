@@ -2,6 +2,7 @@ import Mock from  'mockjs'
 
 Mock.mock('/signin', options => {
   var body = JSON.parse(options.body)
+  console.log(options)
   if(body.userName === "test2" && body.password === "1234qwer") {
     return {
       user: {
@@ -13,8 +14,16 @@ Mock.mock('/signin', options => {
       status: 200
     }
   }
-  return {
-    status: 404
+  if(body.userName === "test4" && body.password === "1234qwer") {
+    return {
+      user: {
+        "userID": "59787ddffff5435b4f3c4437",
+        "userName": "test4",
+        "avatar": "http://google.com/avatar/01" 
+      },
+      success: true,
+      status: 200
+    }
   }
 })
 
@@ -343,8 +352,10 @@ Mock.mock(`/user/597877211b99dbea8a245d0e/history`, ()=> {
   }
 })
 
+// put
 Mock.mock('/user/597877211b99dbea8a245d0e/post', options=> {
   console.log('put post called')
+  if (options.type !== 'PUT') return false
   var body = JSON.parse(options.body)
   return {
     success: true,
@@ -360,12 +371,13 @@ Mock.mock('/user/597877211b99dbea8a245d0e/post', options=> {
   }
 })
 
-Mock.mock('/post/597f04822e092f188cb47149', ()=> {
+// get post 
+Mock.mock('/post/597c767704462b4f4c3cf44e', ()=> {
   return {
     "success": true,
     "message": "find post success",
     "post": {
-        "_id": "597f04822e092f188cb47149",
+        "_id": "597c767704462b4f4c3cf44e",
         "title": "Close to your target ",
         "author": {
             "_id": "59787ddffff5435b4f3c4437",
@@ -378,6 +390,35 @@ Mock.mock('/post/597f04822e092f188cb47149', ()=> {
         "lastEditTime": "2017-07-31T10:20:50.916Z"
     }
   }
+})
+
+// edit post 
+Mock.mock('/user/59787ddffff5435b4f3c4437/post/597c767704462b4f4c3cf44e', opts => {
+  if(opts.type === 'POST') {
+    return {
+        "success": true,
+        "message": "edit post success",
+        "editPost": {
+            "_id": "597c767704462b4f4c3cf44e",
+            "title": "Close to your target ",
+            "author": {
+                "_id": "59787ddffff5435b4f3c4437",
+                "userName": "test4",
+                "avatar": "http://google.com/avatar/01"
+            },
+            "content": "This project is almost done",
+            "createTime": "2017-07-31T10:20:50.916Z",
+            "__v": 0,
+            "lastEditTime": "2017-07-31T10:20:50.916Z"
+        }
+    }
+  }
+ if(opts.type === 'DELETE') {
+     return {
+         success: true,
+         message: 'delete Post success'
+     }
+ }
 })
 
 Mock.mock('/597877211b99dbea8a245d0e/signout', ()=> {

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const PostItem = props => (
   <li className="postItem">
     <div className="postItem-title">
-      <Link to={`/post/${props.shortPost.postID}`}>{props.shortPost.title}</Link>
+      <Link to={`/post/${props.shortPost._id}`}>{props.shortPost.title}</Link>
     </div>
     <div className="postItem-info">
       <span className="postItem-info-author">
