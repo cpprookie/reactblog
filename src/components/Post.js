@@ -15,17 +15,18 @@ class Post extends Component {
       post: {
         "_id": "",
         "title": "",
-        "author": {
-            "_id": "",
-            "userName": "",
-            "avatar": ""
-        },
+        "author": 
+          {
+            _id: String,
+            userName: String,
+            avatar: String
+          },
         "content": "",
+        comments: Number
       },
       commentToggleFlag: false,
       redirectToPosts: false,
-      authorEditFlag: false,
-      comments: []
+      authorEditFlag: false
     }
   }
 
@@ -45,8 +46,8 @@ class Post extends Component {
     // get post id from url 
     const arr = this.props.location.pathname.split('/')
     const postID = arr[arr.length-1]
-
-    axios.get(`/post/${postID}`)
+    const userID =  this.props.user.userID ? this.props.user.userID : ''
+    axios.get(`/post/${postID}`, userID)
       .then(res => {
         if(res.data.success) {
           this.setState({post: res.data.post})
@@ -69,7 +70,7 @@ class Post extends Component {
     let isAuthor = this.props.user.userID === this.state.post.author._id
     return (
       <div className="post">
-        <StatedHeader isFixed={this.props.headerFix} />
+        <StatedHeader/>
         <div className="post-wrapper">
           <StatesBlogEdit pattern="view" post={this.state.post} />
           <footer>
@@ -100,9 +101,9 @@ class Post extends Component {
                 </div> : null}
             </div>
             
-              {this.state.commentToggleFlag?  <Comment totalComments={11} 
-                isAuthor={isAuthor} 
-                userID={this.props.user.userID} /> : null}
+              {this.state.commentToggleFlag?  <Comment 
+                isAuthor={isAuthor} postID={this.state.post._id}
+                user={this.props.user} /> : null}
           </footer>
           {/**
            * userID 用来判断浏览者是否登陆以及浏览者是否是评论者,true才用渲染的权限。   

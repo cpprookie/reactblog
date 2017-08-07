@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import {showConfirm} from '../actions'
 
 const mapStateToProps = state => {
-  return {user: state.user}
+  return {
+    user: state.user,
+    headerFix: state.headerFix       
+  }
 }
 
 const mapDispatchToProps = dispatch => {

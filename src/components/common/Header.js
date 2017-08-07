@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import SignoutConfirm from '../../containers/SignoutConfirm'
 
 const Header = props => (
-  <div className={props.isFixed? "header-fixed" : "header"}>
+  <div className={props.headerFix? "header-fixed" : "header"}>
     <div className="header-wrapper">
       <div className="header-content">
         <div className="header-logo">

@@ -17,4 +17,11 @@ export function showConfirm (flag) {
     type: 'SHOW_CONFIRM',
     displayFlag: flag
   }
+} 
+
+export function watchHeaderFix (flag) {
+  return {
+    type: 'HEADER_FIX',
+    headerFix: flag
+  }
 }

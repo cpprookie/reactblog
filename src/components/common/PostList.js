@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Pagination from './Pagination'
 
 const PostItem = props => (
   <li className="postItem">
@@ -20,11 +21,15 @@ const PostItem = props => (
 
 
 const PostList = props => (
-  <ul className="post-list">
-    {props.shortPosts.map(item =>(
-      <PostItem key={item._id} shortPost={item} />
-    ))}
-  </ul>
+  <div className={props.containerClass}>
+    <ul className="post-list">
+      {props.shortPosts.map(item =>(
+        <PostItem key={item._id} shortPost={item} />
+      ))}
+    </ul>
+    {props.totalPage > 1 ?<Pagination totalPages={props.totalPage} 
+       switchPage={props.switchPage} /> : null}
+  </div>
 )
 
 export default PostList

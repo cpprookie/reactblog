@@ -7,26 +7,24 @@ import Signup from './components/Signup'
 import StatedPosts from './containers/StatedPosts'
 import StatedPost from './containers/StatedPost'
 import StatedNewPost from './containers/StatedNewPost'
-import Post from './components/Post'
-import User from './components/User'
-// import Mock from  'mockjs'
+import StatedUser from './containers/StatedUser'
+import {connect} from 'react-redux'
+import {watchHeaderFix} from './actions'
+
 
 import Mock from './mock'
 
-class App extends Component {
+class Root extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      headerFix: false,   // record scroll event    
-    }
     this.handleScroll = this.handleScroll.bind(this)
   }
 
-  handleScroll (e) {
+  handleScroll () {
     if(window.scrollY > 100) {
-      this.setState({headerFix : true})
+      this.props.fixHeader(true)
     } else {
-      this.setState({headerFix : false})
+      this.props.fixHeader(false)
     }
   }
 
@@ -40,13 +38,27 @@ class App extends Component {
       <Route exact path="/" component={Home} />
       <Route path="/signin" component={SigninLink} />
       <Route path='/signup' component={Signup} />
-      <Route path='/posts' render= {props=> <StatedPosts headerFix={this.state.headerFix} {...props} />} />
-      <Route path='/post' render= {props=> <StatedPost headerFix={this.state.headerFix} {...props} />} />
-      <Route path='/user/:userID' render= {props=> <User headerFix={this.state.headerFix} {...props} />} />
+      <Route path='/posts'  component={StatedPosts} />
+      <Route path='/post' component={StatedPost} />
+      <Route path='/user/:userID' component= {StatedUser} />
       <Route path='/edit-post' component={StatedNewPost} />  
     </div> 
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {headerFix: state.headerFix}
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    fixHeader: flag => {
+      return dispatch(watchHeaderFix(flag))}
+  }
+}
+const App = connect (
+  mapStateToProps,
+  mapDispatchToProps
+)(Root)
 
 export default App;

@@ -45,7 +45,8 @@ class Signup extends Component {
     console.log('success')
     axios.post('/signup', {
       userName: this.state.userName,
-      password: this.state.password
+      password: this.state.password,
+      avatar: `http://avata/01`
     }).then(()=>{console.log("successful signup!")}).catch(e=>{console.log(e.message)})
   }
 

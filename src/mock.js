@@ -1,5 +1,10 @@
 import Mock from  'mockjs'
 
+/**
+ * @param post-author: test4
+ *        common user: test2
+ */
+
 Mock.mock('/signin', options => {
   var body = JSON.parse(options.body)
   console.log(options)
@@ -31,6 +36,30 @@ Mock.mock('/signin', options => {
 //   var body = JSON.parse(options.body)
 
 // })
+
+Mock.mock('/posts?author=59787dcd564b105b3b969537&page=0',()=> {
+    console.log('user post called!')
+    return {
+        "success": true,
+    "message": "get posts on page undefined",
+    "totalPage": 1,
+    "postList": [
+        {
+            "lastEditTime": "2017-07-28T03:11:29.693Z",
+            "__v": 0,
+            "createTime": "2017-07-28T03:11:29.693Z",
+            "content": "Hello this is another test",
+            "author": {
+                "_id": "59787dcd564b105b3b969537",
+                "userName": "test3"
+            },
+            "title": "posttest",
+            "_id": "597aab6191725bfb3800a620",
+            "comments": 0
+        }
+    ]
+    }
+})
 
 Mock.mock('/posts', ()=>{
   return {
@@ -293,7 +322,7 @@ Mock.mock('/posts?page=2', ()=>{
   }
 })
 
-Mock.mock(`/user/597877211b99dbea8a245d0e/history`, ()=> {
+Mock.mock(`/user/59787ddffff5435b4f3c4437/history`, ()=> {
   return {
     "sucess": true,
     "message": "get user history success",
@@ -352,11 +381,10 @@ Mock.mock(`/user/597877211b99dbea8a245d0e/history`, ()=> {
   }
 })
 
-// put
+// put  test2
 Mock.mock('/user/597877211b99dbea8a245d0e/post', options=> {
   console.log('put post called')
   if (options.type !== 'PUT') return false
-  var body = JSON.parse(options.body)
   return {
     success: true,
     createPost: {
@@ -387,7 +415,8 @@ Mock.mock('/post/597c767704462b4f4c3cf44e', ()=> {
         "content": "This project is almost done",
         "createTime": "2017-07-31T10:20:50.916Z",
         "__v": 0,
-        "lastEditTime": "2017-07-31T10:20:50.916Z"
+        "lastEditTime": "2017-07-31T10:20:50.916Z",
+        "comments": 6
     }
   }
 })
@@ -419,6 +448,129 @@ Mock.mock('/user/59787ddffff5435b4f3c4437/post/597c767704462b4f4c3cf44e', opts =
          message: 'delete Post success'
      }
  }
+})
+
+
+Mock.mock('/post/597c767704462b4f4c3cf44e/comment', opts => {
+    if (opts.type === 'GET') {
+    return {
+    "success": true,
+    "message": "get comments for post: 597a9f849e82f15214714e12 success",
+    "comments": {
+        "totalComments": 6,
+        "totalPages": 1,
+        "currentPage": 0,
+        "commentList": [
+            {
+                "_id": "597aa992618c64ea44c4f6e7",
+                "post": "597a9f849e82f15214714e12",
+                "author": [
+                    {
+                        "_id": "59787ddffff5435b4f3c4437",
+                        "userName": "test4",
+                        "avatar": "http://google.com/avatar/01"
+                    }
+                ],
+                "content": "comment test3",
+                "timeago": "1 week ago"
+            },
+            {
+                "_id": "597aa9c110b64df3585f5997",
+                "post": "597a9f849e82f15214714e12",
+                "author": [
+                    {
+                        "_id": "59787ddffff5435b4f3c4437",
+                        "userName": "test4",
+                        "avatar": "http://google.com/avatar/01"
+                    }
+                ],
+                "content": "comment test3",
+                "timeago": "1 week ago"
+            },
+            {
+                "_id": "597aa9c210b64df3585f5998",
+                "post": "597a9f849e82f15214714e12",
+                "author": [
+                    {
+                        "_id": "59787ddffff5435b4f3c4437",
+                        "userName": "test4",
+                        "avatar": "http://google.com/avatar/01"
+                    }
+                ],
+                "content": "comment test3",
+                "timeago": "1 week ago"
+            },
+            {
+                "_id": "597aaa6891725bfb3800a61c",
+                "post": "597a9f849e82f15214714e12",
+                "author": [
+                    {
+                        "_id": "59787ddffff5435b4f3c4437",
+                        "userName": "test4",
+                        "avatar": "http://google.com/avatar/01"
+                    }
+                ],
+                "content": "comment test3",
+                "timeago": "1 week ago"
+            },
+            {
+                "_id": "597aaa6991725bfb3800a61d",
+                "post": "597a9f849e82f15214714e12",
+                "author": [
+                    {
+                        "_id": "59787ddffff5435b4f3c4437",
+                        "userName": "test4",
+                        "avatar": "http://google.com/avatar/01"
+                    }
+                ],
+                "content": "comment test3",
+                "timeago": "1 week ago"
+            },
+            {
+                "_id": "597aaa6a91725bfb3800a61e",
+                "post": "597a9f849e82f15214714e12",
+                "author": [
+                    {
+                        "_id": "59787ddffff5435b4f3c4437",
+                        "userName": "test4",
+                        "avatar": "http://google.com/avatar/01"
+                    }
+                ],
+                "content": "comment test3",
+                "timeago": "1 week ago"
+            }
+        ]
+    }
+    }
+    }
+    if (opts.type === 'PUT') {
+        return {
+            success: true,
+            message:  'put comment success',
+            comment: {
+                _id: 'ef41er31ed32413',
+                content: 'hahaha',
+                author: 'das213231',
+                timeago: 'just now',
+                post: '597a9f849e82f15214714e12'
+            }
+        }
+    }
+})
+
+Mock.mock('/user/59787ddffff5435b4f3c4437', ()=> {
+    console.log('user mock here')
+    return {
+    "success": true,
+    "message": "get user base info success",
+    "author": [
+        {
+            "_id": "59787ddffff5435b4f3c4437",
+            "userName": "test4",
+            "avatar": "http://google.com/avatar/01"
+        }
+    ]
+    }
 })
 
 Mock.mock('/597877211b99dbea8a245d0e/signout', ()=> {

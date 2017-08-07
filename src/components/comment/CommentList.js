@@ -8,21 +8,22 @@ import {Link} from 'react-router-dom'
 const CommentList = props => (
   <div className="comment-list-wrapper">
     {props.comments.map(item=>(
-      <div key={item.id} className="comment-item">
+      <div key={item._id} className="comment-item">
         <div className="comment-item-meta">
-          <Link to={`/user/${item.author._id}`}>
+          {/* console.log(item) */}
+          <Link to={`/user/${item.author[0]._id}`}>
             <img className="userLink-avatar" 
-              height="24" width="24" src={item.author.avatar}  alt="user"/>
+              height="24" width="24" src={item.author[0].avatar}  alt="user"/>
           </Link>
           <span className="userLink-userName">
-            {item.author.userName}
+            {item.author[0].userName}
           </span>
           <span className="comment-item-time">
-            {item.publishTime}
+            {item.timeago}
           </span>
         </div>
         <div className="comment-item-content">{item.content}</div>
-        {(props.userID === item.author._id ||　props.isAuthor)? 
+        {(props.userID === item.author[0]._id ||　props.isAuthor)? 
            <div className="comment-item-delete">delete</div>: null}
       </div>)
     )}

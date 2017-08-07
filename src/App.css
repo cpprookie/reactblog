@@ -621,6 +621,7 @@ input,button {
 }
 
 .user-name {
+  margin-top: 10px;
   font-size: 26px;
   line-height: 30px;
 }

@@ -1,6 +1,7 @@
 const  initialState = {
   user: {},
-  displayFlag: false
+  displayFlag: false,
+  headerFix: false
 }
 
 function blogApp (state, action) {
@@ -15,8 +16,11 @@ function blogApp (state, action) {
       console.log('Sign out calls')
       return Object.assign({}, state, {user: {}})
     case 'SHOW_CONFIRM':
-      console.log('SHOW_CONFIRM is called --->' + action.displayFlag)
+      // console.log('SHOW_CONFIRM is called --->' + action.displayFlag)
       return Object.assign({}, state, {displayFlag: action.displayFlag})
+    case 'HEADER_FIX':
+      // console.log('HEADER_FIX is called --->' + action.headerFix)
+      return Object.assign({}, state, {headerFix: action.headerFix})
     default: 
       return state
   }
