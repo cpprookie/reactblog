@@ -10,12 +10,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  console.log('mapDispatchToProps is callled ')
+  // console.log('mapDispatchToProps is callled ')
   return {
     // reset state.user after logging out request 
     exit: () => {
       dispatch(signout())
-    }, 
+    },
     closeSignoutDialog: () => {
       dispatch(showConfirm(false))
     }

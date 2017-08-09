@@ -5,6 +5,13 @@ export function signin (user) {
   }
 }
 
+export function updateAvatar (user) {
+  return {
+    type: 'UPDATE_Avatar',
+    user: user
+  }
+}
+
 export function signout () {
   return {
     type: 'SIGN_OUT',

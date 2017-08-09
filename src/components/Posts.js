@@ -2,8 +2,7 @@ import React ,{Component} from 'react'
 import StatedHeader from '../containers/StatedHeader'
 import PostList from './common/PostList'
 import History from './common/History'
-import axios from 'axios'
-
+import axios from '../config'
 
 class Posts extends  Component {
   constructor (props) {
@@ -17,7 +16,7 @@ class Posts extends  Component {
 
   switchPage (num) {
     console.log(`/posts?page=${num-1}`)
-    axios.get('/posts',{page: num-1})
+    axios.get('/posts',{params:{page: num-1}})
       .then(res => this.setState({
         postList: res.data.postList,
         totalPage: res.data.totalPage

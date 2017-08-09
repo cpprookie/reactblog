@@ -14,11 +14,19 @@ class BlogEdit extends Component {
   }
 
   handleTitle (e) {
-    this.setState({post: {title: e.target.value}})
+    let value = e.target.value
+    this.setState(prevState => {
+      prevState.post.title = value
+      return {post: prevState.post}
+    })
   }
 
   handleBody (e) {
-    this.setState({post: {content: e.target.value}})
+    let value = e.target.value
+    this.setState((prevState,e) => {
+      prevState.post.content = value
+      return {post: prevState.post}
+    })
   }
 
   handleWrite (e) {
@@ -79,7 +87,10 @@ class BlogEdit extends Component {
           </div>
         </div>
         <div className="post-edit-footer">
-          <button className="post-edit-submit" onClick={()=>{this.props.submitPost(this.state.post)}}>submit</button>
+          <button className="post-edit-submit" onClick={()=>{
+            console.log(`this.state.post-->${this.state.post}`)
+            this.props.submitPost(this.state.post)
+          }}>submit</button>
           <button className="post-edit-cancel" onClick={()=>{this.props.cancel()}}>cancel</button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Redirect, Link} from 'react-router-dom'
-import axios from 'axios'
+import axios from '../config'
 
 class Signup extends Component {
   constructor(props) {
@@ -43,11 +43,14 @@ class Signup extends Component {
     }
     this.checkRepeat()
     console.log('success')
-    axios.post('/signup', {
+    axios.put('/signup', {
       userName: this.state.userName,
-      password: this.state.password,
-      avatar: `http://avata/01`
-    }).then(()=>{console.log("successful signup!")}).catch(e=>{console.log(e.message)})
+      password: this.state.password
+    }).then(res => {
+      if(res.data.success) {
+        this.props.history.push('/signin')
+      }
+    })
   }
 
   render () {

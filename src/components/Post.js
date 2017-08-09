@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import StatedHeader from '../containers/StatedHeader'
 import Comment from './comment/Comment'
 import StatesBlogEdit from '../containers/StatedBlogEdit'
-import axios from 'axios'
+import axios from '../config'
 import {Redirect, Link} from 'react-router-dom'
 
 /**
@@ -40,6 +40,15 @@ class Post extends Component {
       })
   }
 
+  // update post after add comment
+  putComment () {
+    axios.get(`/post/${this.state.post._id}`, {params: {userID: this.props.user.userID}})
+      .then(res => {
+        if(res.data.success) {
+          this.setState({post: res.data.post})
+        }
+      }).catch(e => {console.log(e.message)})
+  }
 
   // add record in user history if logged
   componentWillMount () {
@@ -47,7 +56,7 @@ class Post extends Component {
     const arr = this.props.location.pathname.split('/')
     const postID = arr[arr.length-1]
     const userID =  this.props.user.userID ? this.props.user.userID : ''
-    axios.get(`/post/${postID}`, userID)
+    axios.get(`/post/${postID}`, {params: {userID}})
       .then(res => {
         if(res.data.success) {
           this.setState({post: res.data.post})
@@ -103,7 +112,7 @@ class Post extends Component {
             
               {this.state.commentToggleFlag?  <Comment 
                 isAuthor={isAuthor} postID={this.state.post._id}
-                user={this.props.user} /> : null}
+                user={this.props.user} putComment={this.putComment.bind(this)} /> : null}
           </footer>
           {/**
            * userID 用来判断浏览者是否登陆以及浏览者是否是评论者,true才用渲染的权限。   

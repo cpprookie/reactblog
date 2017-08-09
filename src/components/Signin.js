@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+import axios from '../config'
 import {Link} from 'react-router-dom'
 
 class Signin extends Component {

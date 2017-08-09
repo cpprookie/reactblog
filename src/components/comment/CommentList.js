@@ -24,7 +24,7 @@ const CommentList = props => (
         </div>
         <div className="comment-item-content">{item.content}</div>
         {(props.userID === item.author[0]._id ||　props.isAuthor)? 
-           <div className="comment-item-delete">delete</div>: null}
+           <div className="comment-item-delete" onClick={props.deleteComment}>delete</div>: null}
       </div>)
     )}
   </div>

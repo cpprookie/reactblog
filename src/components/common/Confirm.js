@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../config'
 
 const Confirm = props => {
   if (!props.displayFlag) {
@@ -18,9 +18,9 @@ const Confirm = props => {
               onClick={props.closeSignoutDialog}>No</button>
             <button className="modal-footer-yes"
               onClick={()=>{
-                axios.post(`/${props.user.userID}/signout`)
+                axios.post(`/user/${props.user.userID}/signout`)
                   .then((res)=> {
-                    if (res.data.logout) {
+                    if (res.data.success) {
                       props.exit()  
                       props.closeSignoutDialog()
                     }

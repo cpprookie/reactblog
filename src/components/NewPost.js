@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import axios from '../config'
 import StatedBlogEdit from '../containers/StatedBlogEdit'
 
 class NewPost extends Component {
@@ -14,25 +14,24 @@ class NewPost extends Component {
   }
 
   cancel () {
-    console.log('called')
     this.props.history.goBack()
   }
 
 
   submitPost (post) {
     // edit post
-    if (this.props.location.state.post) {
+    if (this.props.location.state) {
       const postID = this.props.location.state.post._id
-      axios.post(`/user/${this.props.user.userID}/post/${postID}`,post)
+      axios.post(`/user/${this.props.user.userID}/post/${postID}`,{post})
       .then(res => {
         if (res.data.success) {
-          console.log(res.data)
+          // console.log(res.data)
           this.props.history.push(`/post/${res.data.editPost._id}`)
         }
       })
     }
     // create post
-    axios.put(`/user/${this.props.user.userID}/post`,post)
+    axios.put(`/user/${this.props.user.userID}/post`,{post})
       .then(res => {
         if (res.data.success) {
           this.props.history.push(`/post/${res.data.createPost._id}`)

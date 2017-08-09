@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import CommentList from './CommentList'
 import CommentInput from './CommentInput'
-import axios from 'axios'
+import axios from '../../config'
 import Pagination from '../common/Pagination'
 
 class Comment extends Component {
@@ -26,6 +26,7 @@ class Comment extends Component {
       ]
     }
     this.getCommentList = this.getCommentList.bind(this)
+    this.deleteComment = this.deleteComment.bind(this)
   }
 
   /**
@@ -45,14 +46,27 @@ class Comment extends Component {
         let putComment = Object.assign({}, res.data.comment, {author: [user]})
         this.setState(prevState => {
           prevState.commentList.push(putComment)
-          return {commentList: prevState.commentList}
+          return {
+            commentList: prevState.commentList,
+            totalComments: prevState.totalComments+1
+           }
         })
+        this.props.putComment()
       }
     })
   }
 
+  deleteComment (id) {
+    axios.delete(`/post/${this.props.postID}/comment${id}`, {user: this.props.user._id})
+      .then(res => {
+        if(res.data.success) {
+          this.getCommentList(0)
+        }
+      })
+  }
+
   getCommentList (page) {
-    axios.get(`/post/${this.props.postID}/comment`,page)
+    axios.get(`/post/${this.props.postID}/comment`,{params: {page}})
       .then(res => {
         console.log(res.data.comments)
         if(res.data.success) {
@@ -81,7 +95,7 @@ class Comment extends Component {
         <div className="comments-topbar">
           <h2 className="topbar-title">{this.state.totalComments} comments</h2>
         </div>
-        <CommentList comments={this.state.commentList} 
+        <CommentList comments={this.state.commentList} deleteComment={this.deleteComment}
           isAuthor={this.props.isAuthor} userID={this.props.user.userID} />
         {/**
          * 未登陆不渲染评论框

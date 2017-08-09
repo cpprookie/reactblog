@@ -5,7 +5,7 @@ import Mock from  'mockjs'
  *        common user: test2
  */
 
-Mock.mock('/signin', options => {
+Mock.mock('http://localhost:3000/signin', options => {
   var body = JSON.parse(options.body)
   console.log(options)
   if(body.userName === "test2" && body.password === "1234qwer") {
@@ -32,15 +32,15 @@ Mock.mock('/signin', options => {
   }
 })
 
-// Mock.mock('/signup', ()=>{
+// Mock.mock('http://localhost:3000/signup', ()=>{
 //   var body = JSON.parse(options.body)
 
 // })
 
-Mock.mock('/posts?author=59787dcd564b105b3b969537&page=0',()=> {
+Mock.mock('http://localhost:3000/posts?author=59787dcd564b105b3b969537&page=0',()=> {
     console.log('user post called!')
     return {
-        "success": true,
+    "success": true,
     "message": "get posts on page undefined",
     "totalPage": 1,
     "postList": [
@@ -61,7 +61,7 @@ Mock.mock('/posts?author=59787dcd564b105b3b969537&page=0',()=> {
     }
 })
 
-Mock.mock('/posts', ()=>{
+Mock.mock('http://localhost:3000/posts', ()=>{
   return {
     "success": true,
     "message": "get posts on page undefined",
@@ -311,7 +311,7 @@ Mock.mock('/posts', ()=>{
   }
 })
 
-Mock.mock('/posts?page=2', ()=>{
+Mock.mock('http://localhost:3000/posts?page=2', ()=>{
   const postList = Array.from(new Array(10)).map((item,index) => 
      item={"postID":index,"title": `Mock Test${index+30}`,"date":new Date(), "comments": 1}
     )
@@ -382,7 +382,7 @@ Mock.mock(`/user/59787ddffff5435b4f3c4437/history`, ()=> {
 })
 
 // put  test2
-Mock.mock('/user/597877211b99dbea8a245d0e/post', options=> {
+Mock.mock('http://localhost:3000/user/597877211b99dbea8a245d0e/post', options=> {
   console.log('put post called')
   if (options.type !== 'PUT') return false
   return {
@@ -400,7 +400,7 @@ Mock.mock('/user/597877211b99dbea8a245d0e/post', options=> {
 })
 
 // get post 
-Mock.mock('/post/597c767704462b4f4c3cf44e', ()=> {
+Mock.mock('http://localhost:3000/post/597c767704462b4f4c3cf44e', ()=> {
   return {
     "success": true,
     "message": "find post success",
@@ -422,7 +422,7 @@ Mock.mock('/post/597c767704462b4f4c3cf44e', ()=> {
 })
 
 // edit post 
-Mock.mock('/user/59787ddffff5435b4f3c4437/post/597c767704462b4f4c3cf44e', opts => {
+Mock.mock('http://localhost:3000/user/59787ddffff5435b4f3c4437/post/597c767704462b4f4c3cf44e', opts => {
   if(opts.type === 'POST') {
     return {
         "success": true,
@@ -451,7 +451,7 @@ Mock.mock('/user/59787ddffff5435b4f3c4437/post/597c767704462b4f4c3cf44e', opts =
 })
 
 
-Mock.mock('/post/597c767704462b4f4c3cf44e/comment', opts => {
+Mock.mock('http://localhost:3000/post/597c767704462b4f4c3cf44e/comment', opts => {
     if (opts.type === 'GET') {
     return {
     "success": true,
@@ -558,7 +558,7 @@ Mock.mock('/post/597c767704462b4f4c3cf44e/comment', opts => {
     }
 })
 
-Mock.mock('/user/59787ddffff5435b4f3c4437', ()=> {
+Mock.mock('http://localhost:3000/user/59787ddffff5435b4f3c4437', ()=> {
     console.log('user mock here')
     return {
     "success": true,
@@ -573,7 +573,7 @@ Mock.mock('/user/59787ddffff5435b4f3c4437', ()=> {
     }
 })
 
-Mock.mock('/597877211b99dbea8a245d0e/signout', ()=> {
+Mock.mock('http://localhost:3000/597877211b99dbea8a245d0e/signout', ()=> {
   return {logout: true}
 })
 

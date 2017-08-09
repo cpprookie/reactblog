@@ -11,7 +11,6 @@ import StatedUser from './containers/StatedUser'
 import {connect} from 'react-redux'
 import {watchHeaderFix} from './actions'
 
-
 import Mock from './mock'
 
 class Root extends Component {

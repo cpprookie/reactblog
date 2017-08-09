@@ -125,6 +125,14 @@ response: {
 path: '/user/:userID/post',
 method: 'put',
 
+request_param: {
+  post: {
+    author: '',
+    title: '',
+    content: ''
+  }
+}
+
 response: {
   success: true,
   message: 'create post success'

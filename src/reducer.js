@@ -12,8 +12,10 @@ function blogApp (state, action) {
   switch(action.type) {
     case 'SIGN_IN':
       return Object.assign({}, state, {user: action.user})
+    case 'UPDATE_AVATAR':
+      return Object.assign({}, state, {user: action.user})
     case 'SIGN_OUT':
-      console.log('Sign out calls')
+      // console.log('Sign out calls')
       return Object.assign({}, state, {user: {}})
     case 'SHOW_CONFIRM':
       // console.log('SHOW_CONFIRM is called --->' + action.displayFlag)

@@ -11,7 +11,7 @@ const UserNav = props => {
   if (!props.isAuthor) {
     itemPaths = ['posts', 'history']
   } else {
-    itemPaths = ['posts', 'history','information']
+    itemPaths = ['posts', 'history','update']
   }
   return (
     <div className="user-info-nav">
