@@ -27,12 +27,15 @@ class UserUpdate extends Component {
       console.log('different password!')
       return 
     }
-    if(this.state.passowrd.length < 8 || 
+    if(this.state.password.length < 8 || 
        this.state.newPassword.length < 8 ||
        this.state.repeatPassword.length < 8) {
          console.log('password needs to be more than 8 characters')
        }
-    axios.post(`/user/${this.props.userId}/account`)
+    axios.post(`/user/${this.props.userID}/account`, {
+      password: this.state.password,
+      newPassword: this.state.newPassword
+    })
       .then(res => {
         if (res.data.success) {
           this.setState({redirectToSignin: true})
@@ -52,18 +55,21 @@ class UserUpdate extends Component {
         <div className="password-area">
           <div className="password-area-item">
             <label>Old password</label>
-            <input className="password-area-input" type="password"/>
+            <input className="password-area-input" type="password" 
+               onChange={this.handlePassword.bind(this)}/>
           </div>
           <div className="password-area-item">
             <label>New password</label>
-            <input className="password-area-input" type="password"/>
+            <input className="password-area-input" type="password"
+               onChange={this.handleNewPassword.bind(this)}/>
           </div>
           <div className="password-area-item">
             <label>Repeat new password</label>
-            <input className="password-area-input" type="password"/>
+            <input className="password-area-input" type="password"
+              onChange={this.handleRepeatPassword.bind(this)}/>
           </div>
         </div>
-        <button className="update-submit-btn">Update password</button>
+        <button className="update-submit-btn" onClick={this.submitUpdate.bind(this)}>Update password</button>
       </div>
     )
   }

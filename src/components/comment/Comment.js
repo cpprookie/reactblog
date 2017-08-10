@@ -28,11 +28,7 @@ class Comment extends Component {
     this.getCommentList = this.getCommentList.bind(this)
     this.deleteComment = this.deleteComment.bind(this)
   }
-
-  /**
-   * 
-   * @todo {*} comment comonent needs pagination too. 
-   */
+  // handle post new comment 
   addComment (content) {
     const user = this.props.user
     axios.put(`/post/${this.props.postID}/comment`, {
@@ -56,8 +52,12 @@ class Comment extends Component {
     })
   }
 
+  // handle post author or comment author delete comment
   deleteComment (id) {
-    axios.delete(`/post/${this.props.postID}/comment${id}`, {user: this.props.user._id})
+    // console.log(`params: {user: ${this.props.user.userID}}`)
+    axios.delete(`/post/${this.props.postID}/comment/${id}`, {
+      params: {user: this.props.user.userID}
+    })
       .then(res => {
         if(res.data.success) {
           this.getCommentList(0)
@@ -65,15 +65,16 @@ class Comment extends Component {
       })
   }
 
+  // get posts's comment with pagination
   getCommentList (page) {
     axios.get(`/post/${this.props.postID}/comment`,{params: {page}})
       .then(res => {
-        console.log(res.data.comments)
+        // console.log(res.data.comments)
         if(res.data.success) {
           this.setState({
             commentList: res.data.comments.commentList,
             totalComments: res.data.comments.totalComments,
-            totalpages: res.data.comments.totalPages
+            totalPages: res.data.comments.totalPages
           })
         }
       }).catch(e => console.log(e.message))
@@ -102,7 +103,7 @@ class Comment extends Component {
          */}
         {this.props.user.userID ? <CommentInput submit={this.addComment.bind(this)}/> : null}
         {this.state.totalPages > 1 ? <Pagination totalPages={this.state.totalPages} 
-               switchCommentPage={this.switchCommentPage.bind(this)} /> : null}
+               switchPage={this.switchCommentPage.bind(this)} /> : null}
       </div>
     )
   }

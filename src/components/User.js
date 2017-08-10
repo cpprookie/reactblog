@@ -51,7 +51,7 @@ class User extends Component {
         this.setState({author: {avatar: res.data.avatar}})
         let user = this.props.user
         user.avatar = res.data.avatar
-        this.props.updateAvatar(user)
+        this.props.changeAvatar(user)
       })
       .catch(e => console.log(e.message))
   }
@@ -114,8 +114,6 @@ class User extends Component {
               <Route path={`${this.props.match.url}/posts`} render={()=>
                 <PostList containerClass="user-info-posts" shortPosts={this.state.postList} 
                 totalPage={this.state.totalPage} switchPage={this.switchPage.bind(this)}/>}/>
-              <Route path={`${this.props.match.url}/history`} render={()=>
-                <History history={this.state.history} />} />
               <Route path={`${this.props.match.url}/update`}  render={()=>
                 <UserUpdate userID={this.state.author._id} />}/>
             </div>

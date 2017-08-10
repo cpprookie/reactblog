@@ -31,7 +31,7 @@ class Posts extends  Component {
       }))
 
     if (this.props.user.userID) {
-      axios.get(`/user/${this.props.user.userID}/history`)
+      axios.get(`/user/${this.props.user.userID}/history?all=false`)
         .then(res => this.setState({history: res.data.history}))
     }
   }

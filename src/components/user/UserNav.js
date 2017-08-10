@@ -9,9 +9,9 @@ const UserNavItem = props =>
 const UserNav = props => {
   let itemPaths = []
   if (!props.isAuthor) {
-    itemPaths = ['posts', 'history']
+    itemPaths = ['posts']
   } else {
-    itemPaths = ['posts', 'history','update']
+    itemPaths = ['posts','update']
   }
   return (
     <div className="user-info-nav">

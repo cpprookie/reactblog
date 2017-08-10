@@ -21,7 +21,7 @@ class Signin extends Component {
 
   // Need an component used to show message!
   handleClick () {
-    console.log('click')
+    // console.log('click')
     if (this.state.userName.length === 0) {
       console.log("userName can't be null!")
       return false
@@ -35,7 +35,7 @@ class Signin extends Component {
     // signin request
     axios.post('/signin',{userName: this.state.userName, password:this.state.password})
       .then( ret=> {
-        console.log('signin invoked!')
+        // console.log('signin invoked!')
         if(ret) {
           this.props.userCache(ret.data.user)
           this.props.history.replace('/posts')

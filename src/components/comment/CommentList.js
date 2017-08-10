@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 /**
  * 
- * @param item= {commentID, author:{userName, avatar}, content, publishTime} 
+ * @param item= {_id, author:{userName, avatar}, content, publishTime} 
  */
 
 const CommentList = props => (
@@ -24,7 +24,8 @@ const CommentList = props => (
         </div>
         <div className="comment-item-content">{item.content}</div>
         {(props.userID === item.author[0]._id ||　props.isAuthor)? 
-           <div className="comment-item-delete" onClick={props.deleteComment}>delete</div>: null}
+           <div className="comment-item-delete" onClick={()=>
+            {props.deleteComment(item._id)}}>delete</div>: null}
       </div>)
     )}
   </div>

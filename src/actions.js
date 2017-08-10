@@ -7,7 +7,7 @@ export function signin (user) {
 
 export function updateAvatar (user) {
   return {
-    type: 'UPDATE_Avatar',
+    type: 'UPDATE_AVATAR',
     user: user
   }
 }

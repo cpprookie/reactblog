@@ -37,7 +37,7 @@ class Pagination extends Component {
     if (text === '...' || parseInt(text, 10) === this.state.currentPage) {
       return false
     }
-    console.log(text)
+    // console.log(text)
     this.updatePageList(parseInt(text, 10))
   }
 

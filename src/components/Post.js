@@ -65,7 +65,7 @@ class Post extends Component {
   }
 
   toggleComments () {
-    console.log('comments toglle')
+    //console.log('comments toglle')
     this.setState(prevState => {
       return {commentToggleFlag: !prevState.commentToggleFlag}
     })
