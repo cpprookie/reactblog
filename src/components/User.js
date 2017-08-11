@@ -48,8 +48,12 @@ class User extends Component {
     formData.append('avatar', file)
     axios.post(`/user/${this.state.author._id}/avatar`, formData)
       .then(res=> {
-        this.setState({author: {avatar: res.data.avatar}})
-        let user = this.props.user
+        this.setState(prevState => {
+          let author = prevState.author
+          author.avatar = res.data.avatar
+          return author
+        })
+        let user = Object.assign({}, this.props.user)
         user.avatar = res.data.avatar
         this.props.changeAvatar(user)
       })

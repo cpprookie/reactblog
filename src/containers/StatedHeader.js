@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {showConfirm} from '../actions'
 
 const mapStateToProps = state => {
-  console.log(`header user --> ${JSON.stringify(state.user)}`)
   return {
     user: state.user,
     headerFix: state.headerFix       

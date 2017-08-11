@@ -88,7 +88,7 @@ class BlogEdit extends Component {
         </div>
         <div className="post-edit-footer">
           <button className="post-edit-submit" onClick={()=>{
-            console.log(`this.state.post-->${this.state.post}`)
+            //console.log(`this.state.post-->${this.state.post}`)
             this.props.submitPost(this.state.post)
           }}>submit</button>
           <button className="post-edit-cancel" onClick={()=>{this.props.cancel()}}>cancel</button>

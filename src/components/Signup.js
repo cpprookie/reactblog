@@ -42,7 +42,7 @@ class Signup extends Component {
       return false
     }
     this.checkRepeat()
-    console.log('success')
+    // console.log('success')
     axios.put('/signup', {
       userName: this.state.userName,
       password: this.state.password

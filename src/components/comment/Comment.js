@@ -38,7 +38,7 @@ class Comment extends Component {
       }
     }).then( res => {
       if(res.data.success) {
-        console.log(res.data.comment)
+        //console.log(res.data.comment)
         let putComment = Object.assign({}, res.data.comment, {author: [user]})
         this.setState(prevState => {
           prevState.commentList.push(putComment)
@@ -54,7 +54,7 @@ class Comment extends Component {
 
   // handle post author or comment author delete comment
   deleteComment (id) {
-    // console.log(`params: {user: ${this.props.user.userID}}`)
+    // //console.log(`params: {user: ${this.props.user.userID}}`)
     axios.delete(`/post/${this.props.postID}/comment/${id}`, {
       params: {user: this.props.user.userID}
     })
@@ -69,7 +69,7 @@ class Comment extends Component {
   getCommentList (page) {
     axios.get(`/post/${this.props.postID}/comment`,{params: {page}})
       .then(res => {
-        // console.log(res.data.comments)
+        // //console.log(res.data.comments)
         if(res.data.success) {
           this.setState({
             commentList: res.data.comments.commentList,
@@ -77,7 +77,7 @@ class Comment extends Component {
             totalPages: res.data.comments.totalPages
           })
         }
-      }).catch(e => console.log(e.message))
+      })
   }
 
   // update commentList when switch comment page
@@ -86,7 +86,7 @@ class Comment extends Component {
   }
 
   componentWillMount () {
-    console.log(`getcommentList called!`)
+    //console.log(`getcommentList called!`)
     this.getCommentList(0)
   }
 

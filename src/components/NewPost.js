@@ -53,7 +53,7 @@ class NewPost extends Component {
                   <Link to='/posts'>R&B</Link>
                 </div>
                 <div className="header-nav">
-                  <Link to='/user'>
+                  <Link to={`/user/${this.props.user.userID}`}>
                     <span className="nav-user">
                       <img src={this.props.user.avatar} alt="avatar"/>
                     </span>

@@ -23,8 +23,6 @@ function blogApp (state, action) {
     case 'HEADER_FIX':
       // console.log('HEADER_FIX is called --->' + action.headerFix)
       return Object.assign({}, state, {headerFix: action.headerFix})
-    default: 
-      return state
   }
 }
 

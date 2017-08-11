@@ -11,7 +11,7 @@ class Header extends Component {
   }
   
   componentWillMount () {
-    console.log('Header is a class now')
+    //console.log('Header is a class now')
     this.setState({avatar: this.props.user.avatar})
   }
 
@@ -20,7 +20,8 @@ class Header extends Component {
    * @param {*} nextProps  force header update user avatar
    */
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.user.avatar)
+    //console.log('Header will receive props called!')
+    //console.log(nextProps.user.avatar)
     if(this.props.user.avatar !== nextProps.user.avatar) {
       this.setState({avatar: nextProps.user.avatar})
     }

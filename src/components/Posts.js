@@ -15,7 +15,7 @@ class Posts extends  Component {
   }
 
   switchPage (num) {
-    console.log(`/posts?page=${num-1}`)
+    //console.log(`/posts?page=${num-1}`)
     axios.get('/posts',{params:{page: num-1}})
       .then(res => this.setState({
         postList: res.data.postList,
